@@ -1,0 +1,42 @@
+{
+  "name": "angularjs-example1",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "rimraf dist/js && webpack --bail --progress --profile",
+    "server": "webpack-dev-server --history-api-fallback --inline --progress"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@uirouter/angularjs": "^1.0.19",
+    "angular": "^1.7.2",
+    "angular-animate": "^1.7.2",
+    "angular-aria": "^1.7.2",
+    "angular-material": "^1.1.10",
+    "angular-messages": "^1.7.2",
+    "roboto-fontface": "^0.9.0"
+  },
+  "devDependencies": {
+    "angularjs-template-loader": "^0.1.1",
+    "autoprefixer": "^9.0.1",
+    "babel-core": "^6.26.3",
+    "babel-loader": "^7.1.5",
+    "babel-preset-env": "^1.7.0",
+    "copy-webpack-plugin": "^4.5.2",
+    "css-loader": "^1.0.0",
+    "extract-text-webpack-plugin": "^3.0.2",
+    "file-loader": "^1.1.11",
+    "html-webpack-plugin": "^3.2.0",
+    "raw-loader": "^0.5.1",
+    "rimraf": "^2.6.2",
+    "style-loader": "^0.21.0",
+    "svg-url-loader": "^2.3.2",
+    "webpack": "^4.16.1",
+    "webpack-cli": "^3.1.0",
+    "webpack-dev-server": "^3.1.4",
+    "webpack-material-design-icons": "^0.1.0"
+  }
+}

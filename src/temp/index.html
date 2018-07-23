@@ -1,0 +1,103 @@
+<html ng-app="app" lang="en">
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Angular Material style sheet -->
+  <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.8/angular-material.min.css">
+  <link rel="stylesheet" href="src/css/vscroll.css">
+
+</head>
+
+<body ng-cloak>
+  <!--
+    Your HTML content here
+  -->
+  <!-- toolbar -->
+  <div ng-controller="SidenavCtrl" ng-cloak>
+    <md-content>
+      <md-toolbar class="md-hue-2">
+        <div class="md-toolbar-tools">
+          <md-button ng-click="toggleSidenav()" class="md-icon-button" aria-label="Settings" ng-disabled="false">
+            <md-icon md-svg-icon="img/icons/menu.svg"></md-icon>
+          </md-button>
+
+          <h2 flex md-truncate>Toolbar with Disabled/Enabled Icon Buttons</h2>
+
+          <md-button class="md-icon-button" aria-label="Favorite">
+            <md-icon md-svg-icon="img/icons/favorite.svg" class="favorite-icon"></md-icon>
+          </md-button>
+
+          <md-button class="md-icon-button" aria-label="More">
+            <md-icon md-svg-icon="img/icons/more_vert.svg"></md-icon>
+          </md-button>
+        </div>
+      </md-toolbar>
+      <br>
+      <!-- toolbar -->
+
+      <div layout="column" style="height: 500px;" ng-cloak>
+
+        <section layout="row" flex>
+
+          <md-sidenav class="md-sidenav-left" md-component-id="closeEventsDisabled" md-whiteframe="4" md-disable-close-events>
+
+            <md-toolbar class="md-theme-indigo">
+
+              <h1 class="md-toolbar-tools">
+                <md-button ng-click="toggleSidenav()" class="md-icon-button" aria-label="Settings" ng-disabled="false">
+                  <md-icon md-svg-icon="img/icons/menu.svg"></md-icon>
+                </md-button>Disabled Close Events</h1>
+            </md-toolbar>
+
+            <md-content layout-margin>
+              <p>
+                This sidenav is showing the backdrop, but users can't close the sidenav by clicking on the backdrop or pressing the 'Escape'
+                key.
+              </p>
+            </md-content>
+          </md-sidenav>
+
+          <md-content flex layout-padding>
+            <div layout="column" layout-align="top center">
+              <div ng-controller="AppCtrl as ctrl" ng-cloak class="virtualRepeatdemoInfiniteScroll">
+                <md-content layout="column">
+                  <p>
+                    Display an infinitely growing list of items in a viewport of only 7 rows (height=40px).
+                    <br/>
+                    <br/> This demo shows scroll and rendering performance gains when using
+                    <code>md-virtual-repeat</code>; achieved with the dynamic reuse of rows visible in the viewport area. Developers are required to explicitly
+                    use
+                    <code>md-virtual-repeat-container</code> as a wrapping parent container.
+                    <br/>
+                    <br/> To enable infinite scroll behavior, developers must pass in a custom instance of mdVirtualRepeatModel
+                    (see the example's source for more info).
+                  </p>
+
+                  <md-virtual-repeat-container id="vertical-container">
+                    <div md-virtual-repeat="item in ctrl.infiniteItems" md-on-demand class="repeated-item" flex>
+                      {{item}}
+                    </div>
+                  </md-virtual-repeat-container>
+                </md-content>
+              </div>
+            </div>
+          </md-content>
+        </section>
+      </div>
+    </md-content>
+  </div>
+
+
+  <!-- Angular Material requires Angular.js Libraries -->
+  <!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.2/angular.min.js"></script> -->
+  <!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.2/angular-animate.min.js"></script> -->
+  <!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.2/angular-aria.min.js"></script> -->
+  <!-- <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.7.2/angular-messages.min.js"></script> -->
+
+  <!-- Angular Material Library -->
+  <!-- <script src="https://ajax.googleapis.com/ajax/libs/angular_material/1.1.8/angular-material.min.js"></script> -->
+  <!-- Your application bootstrap  -->
+  <script type="text/javascript" src="dist/bundle.js"></script>
+</body>
+
+</html>

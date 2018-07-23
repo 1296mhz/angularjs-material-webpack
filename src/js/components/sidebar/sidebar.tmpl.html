@@ -1,0 +1,23 @@
+<md-sidenav class="md-sidenav-left" md-component-id="closeEventsDisabled" md-whiteframe="4" md-disable-close-events>
+      <md-toolbar class="md-theme-indigo">
+            <h1 class="md-toolbar-tools">
+                  <md-button ng-click="$ctrl.toggleSidenav()" class="md-icon-button" aria-label="Settings" ng-disabled="false">
+                        <md-icon md-svg-icon="img/icons/menu.svg"></md-icon>
+                  </md-button>Disabled Close Events</h1>
+      </md-toolbar>
+      <md-content layout-margin>
+            <p>
+                  This sidenav is showing the backdrop, but users can't close the sidenav by clicking on the backdrop or pressing the 'Escape'
+                  key.
+            </p>
+            <md-menu-content width="3">
+                  <md-menu-item ng-repeat="item in $ctrl.links">
+                        <md-button ui-sref="{{ item.uisref }}" ui-sref-active="active">
+                              <span md-menu-align-target>
+                                    <md-icon ng-bind="item.icon"></md-icon>
+                              </span> {{item.uisref}} </md-button>
+                  </md-menu-item>
+            </md-menu-content>
+
+      </md-content>
+</md-sidenav>
