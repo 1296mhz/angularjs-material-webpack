@@ -11,20 +11,22 @@ let HomeComponent = {
 
 function _homeController(postsHttpService) {
 
-  this.items = [
-     { id: "1" },
-     { id: "2" }
-  ];
+   var i = [];
+   this.items = [
+      { id: "1" },
+      { id: "2" }
+   ];
 
-   function getPosts(){
-      postsHttpService.getPosts().then((data)=>{
-         console.log(data.data)
+   function getPosts() {
+      postsHttpService.getPosts().then((data) => {
+         // console.log(data.data)
          
+         i = data.data
       })
    }
 
-   getPosts();
-   console.log("Home component contoller")
+   getPosts()
+ 
 }
 
 export default angular.module('HomeModule', [])
