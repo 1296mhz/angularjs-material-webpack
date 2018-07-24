@@ -7,7 +7,8 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "rimraf dist/js && webpack --bail --progress --profile",
     "start": "http-server dist/",
-    "server": "webpack-dev-server --history-api-fallback --inline --progress"
+    "server": "webpack-dev-server --history-api-fallback --inline --progress --hot",
+    "watch": "webpack -d --watch --watch-poll --progress --colors "
   },
   "author": "",
   "license": "ISC",

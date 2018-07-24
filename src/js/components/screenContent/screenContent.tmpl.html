@@ -1,11 +1,10 @@
-<md-content>
+
    <header-component></header-component>
-   <div layout="column" style="height: 500px;" ng-cloak>
+   <div layout="column" style="height: 100%;" ng-cloak>
       <section layout="row" flex>
-           <sidebar-component></sidebar-component>
-         <md-content flex layout-padding>
-           <ui-view></ui-view>
-         </md-content>
+         <sidebar-component></sidebar-component>
+         <div class="marg">
+         <ui-view></ui-view>
+      </div>
       </section>
    </div>
-</md-content>

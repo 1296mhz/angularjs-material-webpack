@@ -1,34 +1,43 @@
-body {
-   margin-bottom: 0px;
-   padding-bottom: 0px;
-   position: relative;
+.marg {
+   margin-top: 65px;
 }
-.virtualRepeatdemoInfiniteScroll #vertical-container {
-  height: 292px;
-  width: 100%;
-  max-width: 400px; }
 
-.virtualRepeatdemoInfiniteScroll .repeated-item {
-  border-bottom: 1px solid #ddd;
-  box-sizing: border-box;
-  height: 40px;
-  padding-top: 10px; }
+.fixed-header {
+   position: fixed;
+   top: 0;
+   left: 0;
+   z-index: 2;
+   width: 100% !important;
+}
 
-.virtualRepeatdemoInfiniteScroll md-content {
-  margin: 16px; }
-
-.virtualRepeatdemoInfiniteScroll md-virtual-repeat-container {
-  border: solid 1px grey; }
-
-.virtualRepeatdemoInfiniteScroll .md-virtual-repeat-container .md-virtual-repeat-offsetter div {
-  padding-left: 16px; }
-
-  .toolbardemoBasicUsage md-toolbar .md-button.md-icon-button .favorite-icon {
-  fill: #DE3641; }
+.toolbardemoBasicUsage md-toolbar .md-button.md-icon-button .favorite-icon {
+   fill: #DE3641;
+}
 
 .toolbardemoBasicUsage md-toolbar md-toolbar-filler {
-  background-color: #e0e0e0; }
-  .toolbardemoBasicUsage md-toolbar md-toolbar-filler #filler-icon {
-    fill: #4C9EF1; }
+   background-color: #e0e0e0;
+}
 
+.toolbardemoBasicUsage md-toolbar md-toolbar-filler #filler-icon {
+   fill: #4C9EF1;
+}
 
+.virtualRepeatdemoVerticalUsage #vertical-container {
+   height: 292px;
+   width: 100%;
+   max-width: 400px; }
+ 
+ .virtualRepeatdemoVerticalUsage .repeated-item {
+   border-bottom: 1px solid #ddd;
+   box-sizing: border-box;
+   height: 40px;
+   padding-top: 10px; }
+ 
+ .virtualRepeatdemoVerticalUsage md-content {
+   margin: 16px; }
+ 
+ .virtualRepeatdemoVerticalUsage md-virtual-repeat-container {
+   border: solid 1px grey; }
+ 
+ .virtualRepeatdemoVerticalUsage .md-virtual-repeat-container .md-virtual-repeat-offsetter div {
+   padding-left: 16px; }

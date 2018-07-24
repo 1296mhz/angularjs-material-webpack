@@ -1,4 +1,3 @@
-import './components/infinityScroll/infinityScroll.component';
 import './components/home/home.component';
 
 routing.$inject = ['$urlRouterProvider', '$locationProvider', '$stateProvider'];
@@ -13,13 +12,6 @@ export default function routing($urlRouterProvider, $locationProvider, $statePro
     component: 'homeComponent'
   };
 
-  let infinityScrollState = {
-    name: 'infinityScroll',
-    url: '/infinityScroll',
-    component: 'infinityScrollComponent'
-  };
-
   $stateProvider.state(homeState);
-  $stateProvider.state(infinityScrollState);
 
 }

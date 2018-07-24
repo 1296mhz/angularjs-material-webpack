@@ -1,5 +1,4 @@
 
-import angular from 'angular';
 import '../../dep.module';
 
 _headerController.$inject = ['$rootScope'];

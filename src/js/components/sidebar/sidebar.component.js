@@ -1,7 +1,4 @@
 
-import angular from 'angular';
-import '../../dep.module';
-
 _sidebarController.$inject = ['$rootScope', '$mdSidenav'];
 
 let SidebarComponent = {
