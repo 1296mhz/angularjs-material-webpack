@@ -4,22 +4,19 @@ require('babel-loader');
 require('file-loader');
 require('raw-loader');
 require('svg-url-loader');
-//require('webpack-material-design-icons');
 module.exports = {
     "mode": "production",
-    "entry": "./src/js/app.module.js",
-    // "entry": {
-        // app: "./src/js/app.module.js",
-        // vendors: [
-            // "webpack-material-design-icons"
-            // ]
-    // },
+    "entry": {
+        vendors: [
+            "./src/js/app.module.js",
+        ]
+    },
     "output": {
         "path": __dirname + '/dist/js',
         //"filename": "[name].[chunkhash:8].js"
         "filename": "bundle.js"
     },
-    // "devtool": "source-map",
+    //"devtool": "source-map",
     "module": {
         "rules": [
             {
@@ -41,21 +38,12 @@ module.exports = {
                     "css-loader"
                 ]
             }, {
-                // ASSET LOADER
-                // Reference: https://github.com/webpack/file-loader
-                // Copy png, jpg, jpeg, gif, svg, woff, woff2, ttf, eot files to output
-                // Rename the file using the asset hash
-                // Pass along the updated reference to your code
-                // You can add here any file extension you want to get copied to your output
                 test: /\.(png|jpg|jpeg|gif)$/,
                 loader: 'file-loader'
-            }, {
-                test: /\.(svg|eot|svg|ttf|woff|woff2)$/,
-                loader: 'file-loader?name=../[name].[ext]'
-            }, {
-                // HTML LOADER
-                // Reference: https://github.com/webpack/raw-loader
-                // Allow loading html through js
+            },
+            { test: /\.(svg|eot|woff|ttf|svg|woff2)$/, 
+                loader: 'url-loader?limit=100000&name=../fonts/[name].[ext]' },
+            {
                 test: /\.html$/,
                 loader: 'raw-loader'
             },
@@ -69,9 +57,10 @@ module.exports = {
             }
         ]
     },
+    performance: { hints: false },
     devServer: {
-        port: 8080, // configuring port for localserver
-        contentBase: './dist' // configuring from where content needs to be served
+        port: 8080,
+        contentBase: './dist'
     },
     watchOptions: {
         aggregateTimeout: 300,

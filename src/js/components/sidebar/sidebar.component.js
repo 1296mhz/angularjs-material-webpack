@@ -1,6 +1,6 @@
 
 import angular from 'angular';
-import '../../vendor.module';
+import '../../dep.module';
 
 _sidebarController.$inject = ['$rootScope', '$mdSidenav'];
 

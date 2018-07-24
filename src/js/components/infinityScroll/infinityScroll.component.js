@@ -1,6 +1,6 @@
 
 import angular from 'angular';
-import '../../vendor.module';
+import '../../dep.module';
 
 _infinityScrollController.$inject = ['$timeout'];
 
