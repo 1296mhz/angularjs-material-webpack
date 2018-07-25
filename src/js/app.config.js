@@ -1,4 +1,4 @@
-import './components/home/home.component';
+import './components/articlesList/articlesList.component';
 
 routing.$inject = ['$urlRouterProvider', '$locationProvider', '$stateProvider'];
 
@@ -6,12 +6,12 @@ export default function routing($urlRouterProvider, $locationProvider, $statePro
   $locationProvider.html5Mode(true);
   $urlRouterProvider.otherwise('/');
 
-  let homeState = {
-    name: 'home',
+  let articlesListState = {
+    name: 'articlesList',
     url: '/',
-    component: 'homeComponent'
+    component: 'articlesListComponent'
   };
 
-  $stateProvider.state(homeState);
+  $stateProvider.state(articlesListState);
 
 }

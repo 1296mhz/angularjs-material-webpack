@@ -6,18 +6,20 @@ let SidebarComponent = {
    controller: _sidebarController
 };
 
-function _sidebarController( $rootScope, $mdSidenav) {
+function _sidebarController($rootScope, $mdSidenav) {
    console.log("Sidebar component contoller")
 
-        this.links = [
-            {
-                "uisref": "home",
-                "icon": "home"
-            }, {
-                "uisref": "infinityScroll",
-                "icon": "account_box"
-            }
-        ];
+   this.links = [
+      {
+         "text": "Список всех статей",
+         "uisref": "articlesList",
+         "icon": "notes"
+      }, {
+         "text": "Хуета",
+         "uisref": "infinityScroll",
+         "icon": "account_box"
+      }
+   ];
 
    this.toggleSidenav =
       buildToggler('closeEventsDisabled');

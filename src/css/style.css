@@ -41,3 +41,7 @@
  
  .virtualRepeatdemoVerticalUsage .md-virtual-repeat-container .md-virtual-repeat-offsetter div {
    padding-left: 16px; }
+
+.wide-screen {
+   width: 100%
+}
