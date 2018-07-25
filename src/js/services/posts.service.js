@@ -3,7 +3,7 @@ _postsHttpService.$inject = ['$http'];
 function _postsHttpService($http) {
    return {
       getPosts: () => {
-        return $http.get('http://localhost:3000/api/v1/posts');
+        return $http.get('http://localhost:3000/api/v1/articles');
       }
     } 
 }
