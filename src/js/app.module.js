@@ -9,14 +9,19 @@ import './components/screenContent/screenContent.component';
 import './components/header/header.component';
 import './components/sidebar/sidebar.component';
 import './components/articlesList/articlesList.component';
-import './components/infinityScroll/infinityScroll.component';
+import './components/articleEditor/articleEditor.component';
+
 
 import ArticlesHttpService from './services/articles.service';
 
 const appModule = angular.module('app', [
    'ui.router',
    'ngMaterial', 'ngAria', 'ngMessages',
-   'ScreenContentModule', 'HeaderModule', 'SidebarModule', 'ArticlesListModule', 'InfinityScrollModule',
+   'ScreenContentModule', 
+   'HeaderModule', 
+   'SidebarModule', 
+   'ArticlesListModule', 
+   'ArticleEditorModule',
    'ArticlesHttpService' ])
    .config(routing)
    .value('apiServerHost', "localhost:3000");

@@ -15,8 +15,8 @@ function _sidebarController($rootScope, $mdSidenav) {
          "uisref": "articlesList",
          "icon": "notes"
       }, {
-         "text": "Хуета",
-         "uisref": "infinityScroll",
+         "text": "Редактор",
+         "uisref": "articleEditor",
          "icon": "account_box"
       }
    ];

@@ -28,7 +28,7 @@
                         <h4 ng-bind="item.username"></h4>
                         <p ng-bind="item.data | cropString"></p>
                      </div>
-                     <md-button class="md-secondary">Редактировать</md-button>
+                     <md-button ui-sref="editor/{{ item.id }}" ui-sref-active="active" class="md-secondary">Редактировать</md-button>
                      <md-divider ng-if="!$last"></md-divider>
                   </md-list-item>
                </md-list>
