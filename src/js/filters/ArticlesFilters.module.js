@@ -7,5 +7,5 @@ function cropString(){
    };
 }
 
-export default angular.module('PostsFilters', [])
+export default angular.module('ArticlesFilters', [])
    .filter('cropString', cropString);

@@ -1,20 +1,20 @@
 
 import '../../dep.module';
-import '../../filters/PostsFilters.module';
+import '../../filters/ArticlesFilters.module';
 
-_articlesListController.$inject = ['postsHttpService'];
+_articlesListController.$inject = ['articlesHttpService'];
 
 let ArticlesListComponent = {
    template: require('./articlesList.tmpl.html'),
    controller: _articlesListController
 };
 
-function _articlesListController(postsHttpService) {
+function _articlesListController(articlesHttpService) {
 
    var $v = this;
    $v.items = [];
    function getPosts() {
-      postsHttpService.getPosts().then((data) => {
+      articlesHttpService.getArticles().then((data) => {
          // console.log(data.data)
          
          $v.items = data.data
@@ -25,5 +25,5 @@ function _articlesListController(postsHttpService) {
 
 }
 
-export default angular.module('ArticlesListModule', ['PostsFilters'])
+export default angular.module('ArticlesListModule', ['ArticlesFilters'])
    .component('articlesListComponent', ArticlesListComponent)

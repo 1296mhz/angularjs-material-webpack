@@ -11,13 +11,14 @@ import './components/sidebar/sidebar.component';
 import './components/articlesList/articlesList.component';
 import './components/infinityScroll/infinityScroll.component';
 
-import PostsHttpService from './services/posts.service';
+import ArticlesHttpService from './services/articles.service';
 
 const appModule = angular.module('app', [
    'ui.router',
    'ngMaterial', 'ngAria', 'ngMessages',
    'ScreenContentModule', 'HeaderModule', 'SidebarModule', 'ArticlesListModule', 'InfinityScrollModule',
-   'PostsHttpService' ])
-   .config(routing);
+   'ArticlesHttpService' ])
+   .config(routing)
+   .value('apiServerHost', "localhost:3000");
 
 export default appModule;
