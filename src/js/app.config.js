@@ -19,6 +19,7 @@ export default function routing($urlRouterProvider, $locationProvider, $statePro
    component: 'articleEditorComponent',
    resolve: {
       article: function($transition$, articlesHttpService) {
+        // return $transition$.params().articleId
         return articlesHttpService.getArticle($transition$.params().articleId);
       }
     }

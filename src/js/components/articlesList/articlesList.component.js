@@ -17,8 +17,6 @@ function _articlesListController(articlesHttpService) {
   
    function getPosts() {
       articlesHttpService.getArticles().then((data) => {
-         // console.log(data.data)
-         
          $v.items = data.data
       })
    }
@@ -27,7 +25,6 @@ function _articlesListController(articlesHttpService) {
       $v.articleId = articleId
       console.log(articleId)
    }
-
 
    getPosts()
 
