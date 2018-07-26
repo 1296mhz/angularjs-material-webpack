@@ -11,17 +11,17 @@ let ArticlesListComponent = {
 
 function _articlesListController(articlesHttpService) {
 
-   var $v = this;
-   $v.items = [];
-   $v.text;
+   var $ctrl = this;
+   $ctrl.items = [];
+   $ctrl.text;
    function getPosts() {
       articlesHttpService.getArticles().then((data) => {
-         $v.items = data.data
+         $ctrl.items = data.data
       })
    }
 
    this.toggleEdit = function(articleId) {
-      $v.articleId = articleId
+      $ctrl.articleId = articleId
       console.log(articleId)
    }
 

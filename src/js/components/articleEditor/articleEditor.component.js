@@ -4,6 +4,7 @@ import '../../vendor/smde/simplemde-markdown-editor/dist/simplemde.min.css';
 import '../../vendor/smde/simplemde-angular/dist/simplemde-angular';
 
 _articleEditorController.$inject = ['articlesHttpService'];
+_simpleMDE.$inject = ['simplemde'];
 
 let ArticleEditorComponent = {
    template: require('./articleEditor.tmpl.html'),
@@ -25,22 +26,20 @@ function _articleEditorController(articlesHttpService) {
 
    let $ctrl = this;
    $ctrl.toggleButton = function () {
-      console.log($ctrl.article.data[0])
+      console.log($ctrl.article.data[0].data = $ctrl.text)
    }
-}
-
-_simpleMDE.$inject = ['simplemde']
+};
 
 function _simpleMDE() {
    return {
       restrict: 'A',
       require: 'simplemde',
       link: function (scope, element, attrs, simplemde) {
-         simplemde.get() // => SimpleMDE instance
-         simplemde.rerenderPreview()
+         simplemde.get();
+         simplemde.rerenderPreview();
       }
    }
-}
+};
 
 export default angular.module('ArticleEditorModule', ['ArticlesFilters', 'simplemde'])
    .component('articleEditorComponent', ArticleEditorComponent)
