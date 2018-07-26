@@ -25,5 +25,8 @@
                         <input ng-model="$ctrl.article.data[0].title">
                       </md-input-container>
             </md-card-title-text>
+            <md-input-container class="md-block">
+                  <textarea simplemde='{spellChecker: false, autofocus: true }' ng-model='text' md-maxlength="150" rows="5" md-select-on-focus></textarea>
+                </md-input-container>
       </md-card-content>
    </md-card>

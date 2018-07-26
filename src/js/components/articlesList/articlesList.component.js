@@ -7,14 +7,13 @@ _articlesListController.$inject = ['articlesHttpService'];
 let ArticlesListComponent = {
    template: require('./articlesList.tmpl.html'),
    controller: _articlesListController,
- 
 };
 
 function _articlesListController(articlesHttpService) {
 
    var $v = this;
    $v.items = [];
-  
+   $v.text;
    function getPosts() {
       articlesHttpService.getArticles().then((data) => {
          $v.items = data.data
