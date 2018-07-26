@@ -15,14 +15,13 @@ export default function routing($urlRouterProvider, $locationProvider, $statePro
 
   let articleEditorState = {
    name: 'articleEditor',
-   url: '/editor/:articleId',
+   url: '/editor/{articleId}',
    component: 'articleEditorComponent',
    resolve: {
       articleId: function(articleId) {
         return articleId
       }
     }
-    
  };
 
   $stateProvider.state(articlesListState);

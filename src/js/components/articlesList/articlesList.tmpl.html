@@ -22,13 +22,14 @@
             </md-toolbar>
             <md-card-content>
                <md-list>
-                  <md-list-item class="md-3-line" ng-repeat="item in $ctrl.items">
+                  <md-list-item class="md-3-line" ng-repeat="article in $ctrl.items">
                      <div class="md-list-item-text">
-                        <h3 ng-bind="item.title"></h3>
-                        <h4 ng-bind="item.username"></h4>
-                        <p ng-bind="item.data | cropString"></p>
+                        <h3 ng-bind="article.title"></h3>
+                        <h4 ng-bind="article.username"></h4>
+                        <p ng-bind="article.data | cropString"></p>
                      </div>
-                     <md-button ui-sref="editor/{{ item.id }}" ui-sref-active="active" class="md-secondary">Редактировать</md-button>
+       
+                     <md-button ui-sref="articleEditor({ articleId: article.id })" ui-sref-active="active" class="md-secondary">Редактировать</md-button>
                      <md-divider ng-if="!$last"></md-divider>
                   </md-list-item>
                </md-list>
