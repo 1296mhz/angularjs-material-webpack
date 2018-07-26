@@ -5,20 +5,20 @@ _articleEditorController.$inject = ['articlesHttpService'];
 
 let ArticleEditorComponent = {
    template: require('./articleEditor.tmpl.html'),
-   controller: _articleEditorController
+   controller: _articleEditorController,
+   bindings: {
+      article: '<'
+   }
 };
 
-function _articleEditorController(articlesHttpService) {
+function _articleEditorController(articlesHttpService, article) {
 
    var $v = this;
-   $v.id = [];
-   function getPosts() {
-      articlesHttpService.getArticle().then((data) => {
-         // console.log(data.data)
-         
-         $v.items = data.data
-      })
-   }
+   //  $v.id = [];
+   console.log($v)
+   console.log(article.data)
+
+
 }
 
 export default angular.module('ArticleEditorModule', ['ArticlesFilters'])
