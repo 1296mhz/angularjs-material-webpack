@@ -7,5 +7,13 @@ function cropString(){
    };
 }
 
+function stringToArray(){
+    return function (str) {
+       let ourArray = str.split(', ');
+       return ourArray
+    };
+ }
+
 export default angular.module('ArticlesFilters', [])
-   .filter('cropString', cropString);
+   .filter('cropString', cropString)
+   .filter('stringToArray', stringToArray);

@@ -19,14 +19,14 @@
       <md-card-title-text>
          <md-input-container class="md-block">
             <label>Заголовок</label>
-            <input ng-model="$ctrl.article.data[0].title">
+            <input ng-model="$ctrl.article.title">
          </md-input-container>
       </md-card-title-text>
       <md-input-container class="md-block editor-article">
          <textarea aria-label="editorArticle" simplemde='{spellChecker: false, autofocus: true }' ng-model='$ctrl.text' md-maxlength="150"
             rows="5" md-select-on-focus></textarea>
       </md-input-container>
-      <md-chips ng-model="$ctrl.tags" md-removable="$ctrl.removable" placeholder="Введите название тэга" delete-button-label="Удалить тэг"
+      <md-chips ng-model="$ctrl.article.tags" md-removable="$ctrl.removable" placeholder="Введите название тэга" delete-button-label="Удалить тэг"
          delete-hint="Нажмите удалить что бы удалить тэг" secondary-placeholder="+Тэг"></md-chips>
    </md-card-content>
 </md-card>

@@ -18,7 +18,7 @@ export default function routing($urlRouterProvider, $locationProvider, $statePro
       url: '/editor/{articleId}',
       component: 'articleEditorComponent',
       resolve: {
-         article: function ($transition$, articlesHttpService) {
+         articlea: function ($transition$, articlesHttpService) {
             //  return $transition$.params().articleId
             return articlesHttpService.getArticle($transition$.params().articleId);
          }

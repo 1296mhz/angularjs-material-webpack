@@ -7,6 +7,7 @@ require("codemirror/addon/display/fullscreen.js");
 require("codemirror/mode/markdown/markdown.js");
 require("codemirror/addon/mode/overlay.js");
 require("codemirror/addon/display/placeholder.js");
+require("codemirror/addon/display/autorefresh.js");
 require("codemirror/addon/selection/mark-selection.js");
 require("codemirror/mode/gfm/gfm.js");
 require("codemirror/mode/xml/xml.js");
@@ -1523,7 +1524,7 @@ SimpleMDE.prototype.render = function(el) {
 	var temp_cm = this.codemirror;
 	setTimeout(function() {
 		temp_cm.refresh();
-	}.bind(temp_cm), 0);
+	}.bind(temp_cm), 1000);
 };
 
 // Safari, in Private Browsing Mode, looks like it supports localStorage but all calls to setItem throw QuotaExceededError. We're going to detect this and set a variable accordingly.

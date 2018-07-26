@@ -11,11 +11,14 @@ angular.module('simplemde', []).directive('simplemde', [
           },
           rerenderPreview: function(val) {
             return $scope.simplemde.rerenderPreview(val);
+          },
+          refresh: function() {
+            return $scope.simplemde.refresh();
           }
         };
       }],
       link: function(scope, element, attrs, ngModel) {
-        var options, rerenderPreview;
+        var options, rerenderPreview, refresh;
         options = $parse(attrs.simplemde)(scope) || {};
         options.element = element[0];
         var mde = new SimpleMDE(options);
@@ -31,10 +34,15 @@ angular.module('simplemde', []).directive('simplemde', [
             rerenderPreview(val);
           }
         };
-        rerenderPreview = function(val) {};
+        refresh = function() {
+          console.log("refresh")
+        };
+        rerenderPreview = function(val) {
+        };
         scope.simplemde = {
           instance: mde,
-          rerenderPreview: rerenderPreview
+          rerenderPreview: rerenderPreview,
+          refresh: refresh
         };
       }
     };
