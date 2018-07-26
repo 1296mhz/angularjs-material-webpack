@@ -1,32 +1,32 @@
-<md-card ng-cloak >
-      <md-card-title>
-            <md-toolbar class="md-theme-light">
-                  <h2 class="md-toolbar-tools">
-                     <md-card-actions layout="row" layout-align="start center">
-                        <md-card-icon-actions>
-                           <md-button class="md-icon-button" aria-label="Favorite">
-                              <md-icon>create</md-icon>
-                           </md-button>
-                           <md-button class="md-icon-button" aria-label="Share">
-                              <md-icon>share</md-icon>
-                           </md-button>
-                        </md-card-icon-actions>
-                        <md-button ng-click="$ctrl.toggleButton()">Сохранить</md-button>
-                     </md-card-actions>
-                  </h2>
-               </md-toolbar>
-
-      </md-card-title>
-
-      <md-card-content>
-            <md-card-title-text>
-                  <md-input-container class="md-block">
-                        <label>Заголовок</label>
-                        <input ng-model="$ctrl.article.data[0].title">
-                      </md-input-container>
-            </md-card-title-text>
-            <md-input-container class="md-block">
-                  <textarea aria-label="editorArticle" simplemde='{spellChecker: false, autofocus: true }' ng-model='$ctrl.text' md-maxlength="150" rows="5" md-select-on-focus></textarea>
-                </md-input-container>
-      </md-card-content>
-   </md-card>
+<md-card ng-cloak>
+   <md-card-title>
+      <md-toolbar class="md-theme-light">
+         <h2 class="md-toolbar-tools">
+            <md-card-actions layout="row" layout-align="start center">
+               <md-card-icon-actions>
+                  <md-button class="md-icon-button" aria-label="Share">
+                     <md-icon>share</md-icon>
+                  </md-button>
+               </md-card-icon-actions>
+               <md-button class="md-icon-button" ng-click="$ctrl.saveButton()">
+                  <md-icon>save</md-icon>
+               </md-button>
+            </md-card-actions>
+         </h2>
+      </md-toolbar>
+   </md-card-title>
+   <md-card-content>
+      <md-card-title-text>
+         <md-input-container class="md-block">
+            <label>Заголовок</label>
+            <input ng-model="$ctrl.article.data[0].title">
+         </md-input-container>
+      </md-card-title-text>
+      <md-input-container class="md-block editor-article">
+         <textarea aria-label="editorArticle" simplemde='{spellChecker: false, autofocus: true }' ng-model='$ctrl.text' md-maxlength="150"
+            rows="5" md-select-on-focus></textarea>
+      </md-input-container>
+      <md-chips ng-model="$ctrl.tags" md-removable="$ctrl.removable" placeholder="Введите название тэга" delete-button-label="Удалить тэг"
+         delete-hint="Нажмите удалить что бы удалить тэг" secondary-placeholder="+Тэг"></md-chips>
+   </md-card-content>
+</md-card>

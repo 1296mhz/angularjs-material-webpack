@@ -3,30 +3,29 @@ import '../../filters/ArticlesFilters.module';
 import '../../vendor/smde/simplemde-markdown-editor/dist/simplemde.min.css';
 import '../../vendor/smde/simplemde-angular/dist/simplemde-angular';
 
-_articleEditorController.$inject = ['articlesHttpService'];
+_articleEditorController.$inject = ['articlesHttpService', '$stateParams'];
 _simpleMDE.$inject = ['simplemde'];
 
 let ArticleEditorComponent = {
    template: require('./articleEditor.tmpl.html'),
    controller: _articleEditorController,
-   onEnter: function (article) {
-      if (article) {
-         console.log(article)
-      }
-   },
-   onExit: function (article) {
-      if (article) { }
-   },
    bindings: {
       article: '<'
    }
 };
 
-function _articleEditorController(articlesHttpService) {
+function _articleEditorController(articlesHttpService, $stateParams) {
 
    let $ctrl = this;
-   $ctrl.toggleButton = function () {
-      console.log($ctrl.article.data[0].data = $ctrl.text)
+   $ctrl.tags = [];
+
+   console.log( $stateParams.articleId )
+   $ctrl.saveButton = function () {
+     console.log($ctrl.article.data[0].tags)
+      console.log($ctrl.text)
+      if($ctrl.text !== undefined){
+        $ctrl.article.data[0].data === $ctrl.text
+      }
    }
 };
 
