@@ -7,6 +7,9 @@ function _articlesHttpService($http, apiServerHost) {
       },
       getArticle: (id) => {
          return $http.get('http://'+ apiServerHost + '/api/v1/articles/' + id);
+       },
+       updateArticle: (id, data) => {
+        return $http.put('http://'+ apiServerHost + '/api/v1/articles/' + id, data);
        }
     } 
 }

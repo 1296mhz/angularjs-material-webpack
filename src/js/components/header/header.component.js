@@ -10,7 +10,6 @@ let HeaderComponent = {
 
 function _headerController($rootScope) {
     this.toggleSidenav = function(s){
-        console.log("cccc")
         $rootScope.$emit('click', { message: "Hello"});
     }  
 }

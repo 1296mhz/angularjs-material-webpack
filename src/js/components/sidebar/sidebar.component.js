@@ -25,7 +25,6 @@ function _sidebarController($rootScope, $mdSidenav) {
       buildToggler('closeEventsDisabled');
 
    $rootScope.$on('click', () => {
-      console.log("Fire")
       this.toggleSidenav()
    })
 

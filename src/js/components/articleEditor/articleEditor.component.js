@@ -1,72 +1,69 @@
+import "../../filters/ArticlesFilters.module";
+import "../../vendor/smde/simplemde-markdown-editor/dist/simplemde.min.css";
+import "../../vendor/smde/simplemde-angular/dist/simplemde-angular";
 
-import '../../filters/ArticlesFilters.module';
-import '../../vendor/smde/simplemde-markdown-editor/dist/simplemde.min.css';
-import '../../vendor/smde/simplemde-angular/dist/simplemde-angular';
-
-_articleEditorController.$inject = ['$rootScope', 'articlesHttpService', '$stateParams'];
-//_simpleMDE.$inject = ['$rootScope', 'simplemde'];
+_articleEditorController.$inject = ["articlesHttpService", "$stateParams"];
 
 let ArticleEditorComponent = {
-  template: require('./articleEditor.tmpl.html'),
+  template: require("./articleEditor.tmpl.html"),
   controller: _articleEditorController,
   bindings: {
-    articlea: '<'
+    articlea: "<"
   }
 };
 
-function _articleEditorController($rootScope, articlesHttpService, $stateParams) {
-
+function _articleEditorController(articlesHttpService, $stateParams) {
   let articleId = $stateParams.articleId;
   let $ctrl = this;
 
   $ctrl.tags = [];
-  $ctrl.text = '';
+  $ctrl.text = "";
+  $ctrl.tags = [];
+  $ctrl.createdAt = "";
+  $ctrl.updatedAt = "";
   $ctrl.article = {};
-  $ctrl.article.data = '';
-  //console.log($stateParams.articleId);
-
+  $ctrl.article.data = "";
+  $ctrl.readonlyTag = true;
   function getArticle() {
-    articlesHttpService.getArticle(articleId).then((data) => {
-      $ctrl.article.id = data.data[0].id;
-      $ctrl.article.title = data.data[0].title;
-      $ctrl.article.username = data.data[0].username;
-      $ctrl.article.state = data.data[0].state;
-      let ggg = data.data[0].data;
-      console.log(ggg)
-      $ctrl.text = ggg
-      $rootScope.$emit('refreshEditor',{});
-      $ctrl.article.tags = data.data[0].tags.split(',')
-      $ctrl.article.created_at = data.data[0].created_at;
-      $ctrl.article.updated_at = data.data[0].updated_at;
-      console.log($ctrl.article)
-    },
+    articlesHttpService.getArticle(articleId).then(
+      data => {
+        $ctrl.article.id = data.data[0].id;
+        $ctrl.article.title = data.data[0].title;
+        $ctrl.article.username = data.data[0].username;
+        $ctrl.article.state = data.data[0].state;
+        $ctrl.text = data.data[0].data;
+        $ctrl.tags = data.data[0].tags.split(",");
+        $ctrl.createdAt = data.data[0].created_at;
+        $ctrl.updatedAt = data.data[0].updated_at;
+        console.log($ctrl.article);
+      },
+      err => {
+        console.log(err);
+      }
+    );
+  }
+
+  $ctrl.saveArticleButton = function() {
+    $ctrl.article.tags = $ctrl.tags.join(",");
+    $ctrl.article.data = $ctrl.text;
+
+    console.log($ctrl.article);
+    articlesHttpService.updateArticle(articleId, $ctrl.article).then(
+      (data) => {
+        console.log(data);
+      },
       (err) => {
         console.log(err)
-      });
-  }
-
-  $ctrl.saveButton = function () {
-  
+      }
+    );
     // if ($ctrl.article.data !== undefined) {
-      // $ctrl.article.data === $ctrl.text
+    // $ctrl.article.data === $ctrl.text
     // }
-  }
+  };
 
   getArticle();
-};
-/*
-function _simpleMDE() {
-  return {
-    restrict: 'A',
-    require: 'simplemde',
-    link: function (scope, element, attrs, simplemde) {
-      console.log("SCOPE: ", scope)
-      simplemde.get();
-      simplemde.rerenderPreview();
-    }
-  }
-};
-*/
-export default angular.module('ArticleEditorModule', ['ArticlesFilters', 'simplemde'])
-  .component('articleEditorComponent', ArticleEditorComponent)
-  // .directive('custom-simplemde', _simpleMDE)
+}
+
+export default angular
+  .module("ArticleEditorModule", ["ArticlesFilters", "simplemde"])
+  .component("articleEditorComponent", ArticleEditorComponent);
