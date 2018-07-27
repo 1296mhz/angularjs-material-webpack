@@ -24,12 +24,10 @@ function _articleEditorController(articlesHttpService, $stateParams, $mdToast) {
    $ctrl.readonlyTag = true;
 
    if(articleId !== undefined){
-      console.log("Существует")
       $ctrl.operation = "Редактирование статьи";
       getArticle();
    } else {
       $ctrl.operation = "Создание новой статьи";
-      console.log("Новая")
    }
    
    function showSimpleToast(message) {
@@ -41,10 +39,9 @@ function _articleEditorController(articlesHttpService, $stateParams, $mdToast) {
       );
    };
 
-   //toast end
    function getArticle() {
       articlesHttpService.getArticle(articleId).then(
-         data => {
+         (data) => {
             $ctrl.article.id = data.data[0].id;
             $ctrl.article.title = data.data[0].title;
             $ctrl.article.username = data.data[0].username;
@@ -65,20 +62,33 @@ function _articleEditorController(articlesHttpService, $stateParams, $mdToast) {
       $ctrl.article.tags = $ctrl.tags.join(",");
       $ctrl.article.data = $ctrl.text;
 
-      console.log($ctrl.article);
-      articlesHttpService.updateArticle(articleId, $ctrl.article).then(
-         (data) => {
-            console.log(data.data.message);
-            showSimpleToast(data.data.message);
-         },
-         (err) => {
-            console.log(err)
-            showSimpleToast(err);
-         }
-      );
-      // if ($ctrl.article.data !== undefined) {
-      // $ctrl.article.data === $ctrl.text
-      // }
+      if(articleId !== undefined){
+         console.log($ctrl.article);
+         articlesHttpService.updateArticle(articleId, $ctrl.article).then(
+            (data) => {
+               console.log(data.data.message);
+               showSimpleToast(data.data.message);
+            },
+            (err) => {
+               console.log(err)
+               showSimpleToast(err);
+            }
+         );
+         getArticle();
+      } else {
+         console.log($ctrl.article)
+         $ctrl.article.state = 'created';
+         articlesHttpService.addArticle($ctrl.article).then(
+            (data) => {
+               console.log(data)
+            },
+            (err) => {
+               console.log(err)
+            }
+         )
+      }
+
+  
    };
 }
 
