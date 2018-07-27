@@ -16,8 +16,8 @@ function _sidebarController($rootScope, $mdSidenav) {
          "icon": "notes"
       }, {
          "text": "Редактор",
-         "uisref": "articleEditor",
-         "icon": "account_box"
+         "uisref": "articleNewArticleEditor",
+         "icon": "create"
       }
    ];
 

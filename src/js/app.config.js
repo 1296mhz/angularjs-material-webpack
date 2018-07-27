@@ -13,19 +13,20 @@ export default function routing($urlRouterProvider, $locationProvider, $statePro
       component: 'articlesListComponent',
    };
 
+   let articleNewArticleEditorState = {
+      name: 'articleNewArticleEditor',
+      url: '/editor',
+      component: 'articleEditorComponent'
+   };
+
    let articleEditorState = {
       name: 'articleEditor',
       url: '/editor/{articleId}',
-      component: 'articleEditorComponent',
-      resolve: {
-         articlea: function ($transition$, articlesHttpService) {
-            //  return $transition$.params().articleId
-            return articlesHttpService.getArticle($transition$.params().articleId);
-         }
-      }
+      component: 'articleEditorComponent'
    };
 
    $stateProvider.state(articlesListState);
+   $stateProvider.state(articleNewArticleEditorState);
    $stateProvider.state(articleEditorState);
 
 }
