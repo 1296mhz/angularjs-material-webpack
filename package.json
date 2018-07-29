@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "rimraf dist/js && webpack --bail --progress --profile",
+    "build": "rimraf dist/js && webpack --bail --progress --profile && rimraf ../server/dist/* && cp -R dist/* ../server/dist/",
     "start": "http-server dist/",
     "server": "webpack-dev-server --history-api-fallback --inline --progress --hot",
     "watch": "webpack -d --watch --watch-poll --progress --colors "

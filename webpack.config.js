@@ -61,11 +61,11 @@ module.exports = {
       port: 8080,
       contentBase: './dist',
       compress: true,
-      open: true
+      open: false
    },
    watchOptions: {
       poll: true,
       ignored: /node_modules/
    },
-   watch: true
+   watch: false
 }

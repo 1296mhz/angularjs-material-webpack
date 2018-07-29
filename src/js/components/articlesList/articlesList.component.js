@@ -1,5 +1,4 @@
 
-import '../../dep.module';
 import '../../filters/ArticlesFilters.module';
 
 _articlesListController.$inject = ['articlesHttpService'];

@@ -1,6 +1,4 @@
 
-import '../../dep.module';
-
 _headerController.$inject = ['$rootScope'];
 
 let HeaderComponent = {
@@ -9,9 +7,15 @@ let HeaderComponent = {
 };
 
 function _headerController($rootScope) {
-    this.toggleSidenav = function(s){
+    var $ctrl = this;
+
+    $ctrl.logout = function(){
+        window.location.assign("/logout")
+    }
+    $ctrl.toggleSidenav = function(s){
         $rootScope.$emit('click', { message: "Hello"});
     }  
+
 }
 
 export default angular.module('HeaderModule', [])
