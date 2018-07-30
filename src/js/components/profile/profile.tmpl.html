@@ -1,0 +1,67 @@
+<md-card ng-cloak>
+   <md-card-title>
+      <md-card-title-text>
+         <span class="md-headline">Профиль</span>
+      </md-card-title-text>
+   </md-card-title>
+
+   <md-divider></md-divider>
+
+   <md-card-actions layout="row" layout-align="start center">
+      <md-card-title-text>
+         <md-card-actions layout="row" layout-align="start">
+            <md-card-icon-actions>
+               <md-button class="md-icon-button" ng-click="$ctrl.addKey()">
+                  <md-icon>add</md-icon>
+               </md-button>
+            </md-card-icon-actions>
+         </md-card-actions>
+      </md-card-title-text>
+   </md-card-actions>
+
+   <md-divider></md-divider>
+
+   <md-card-content>
+      <form name="userForm">
+
+         <md-input-container class="md-block editor-article">
+
+            <div layout-gt-sm="row" ng-repeat="bkey in $ctrl.blockchainKeys">
+               <md-input-container class="md-block" flex-gt-sm>
+                  <label>Имя пользователя</label>
+                  <input name="username" ng-model="bkey.username" required>
+                  <div ng-messages="userForm.postalCode.$error" role="alert" multiple>
+                     <div ng-message="required" class="my-message">Вы должны заполнить поле ключом.</div>
+                  </div>
+               </md-input-container>
+
+               <md-input-container class="md-block" flex-gt-sm>
+                  <label>Площадка</label>
+                  <md-select ng-model="bkey.blockchainName" ng-init="vox">
+                     <md-option ng-repeat="bname in $ctrl.blockchainName" value="{{bname}}">
+                        {{bname}}
+                     </md-option>
+                  </md-select>
+               </md-input-container>
+
+               <md-input-container class="md-block" flex-gt-sm>
+                  <label>Постинг ключ</label>
+                  <input name="postKey" ng-model="bkey.key" required>
+
+                  <div ng-messages="userForm.postalCode.$error" role="alert" multiple>
+                     <div ng-message="required" class="my-message">Вы должны заполнить поле ключом.</div>
+                  </div>
+               </md-input-container>
+
+               <md-input-container class="md-block" flex-gt-sm>
+                     <md-button class="md-icon-button" ng-click="$ctrl.saveBlockchain()">
+                           <md-icon>save</md-icon>
+                        </md-button>
+               </md-input-container>
+            </div>
+
+         </md-input-container>
+
+   </md-card-content>
+   </form>
+</md-card>

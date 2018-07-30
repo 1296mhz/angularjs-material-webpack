@@ -16,7 +16,7 @@ module.exports = {
       //"filename": "[name].[chunkhash:8].js"
       "filename": "bundle.js"
    },
-   //"devtool": "source-map",
+   "devtool": "source-map",
    "module": {
       "rules": [
          {

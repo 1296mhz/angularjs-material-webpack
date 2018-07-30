@@ -1,19 +1,31 @@
-<md-sidenav class="md-sidenav-left" md-component-id="closeEventsDisabled" md-whiteframe="4" md-disable-close-events >
-      <md-toolbar class="md-theme-indigo">
-            <h1 class="md-toolbar-tools">
-                  <md-button ng-click="$ctrl.toggleSidenav()" class="md-icon-button" aria-label="Settings" ng-disabled="false">
-                        <md-icon md-svg-icon="img/icons/menu.svg"></md-icon>
-                  </md-button>Добро пожаловать в VOX!</h1>
-      </md-toolbar>
-      <md-content layout-margin>
-            <md-menu-content width="3">
-                  <md-menu-item ng-repeat="item in $ctrl.links">
-                        <md-button ui-sref="{{ item.uisref }}" ui-sref-active="active">
-                              <span md-menu-align-target>
-                                    <md-icon ng-bind="item.icon"></md-icon>
-                              </span>{{ item.text }}</md-button>
-                  </md-menu-item>
-            </md-menu-content>
+<md-sidenav class="md-sidenav-left" md-component-id="closeEventsDisabled" md-whiteframe="4" md-disable-close-events>
+   <md-toolbar class="md-theme-indigo">
+      <h1 class="md-toolbar-tools">
+         <md-button ng-click="$ctrl.toggleSidenav()" class="md-icon-button" aria-label="Settings" ng-disabled="false">
+            <md-icon md-svg-icon="img/icons/menu.svg"></md-icon>
+         </md-button>Добро пожаловать в VOX!</h1>
+   </md-toolbar>
+   <md-content layout-margin>
+      <section>
+         <md-list layout-padding>
+            <md-list-item class="md-3-line subheaderProfile">
+               <!-- <img ng-src="$ctrl.config.user.user.photo" class="md-avatar"> -->
+               <div class="md-list-item-text">
+                  <h3 ng-bind="$ctrl.config.user.user.name"></h3>
+                  <h4 ng-bind="$ctrl.config.user.user.email"></h4>
+               </div>
+            </md-list-item>
+         </md-list>
+      </section>
+      <md-divider></md-divider>
+      <md-menu-content width="3">
+         <md-menu-item ng-repeat="item in $ctrl.links">
+            <md-button ui-sref="{{ item.uisref }}" ui-sref-active="active">
+               <span md-menu-align-target>
+                  <md-icon ng-bind="item.icon"></md-icon>
+               </span>{{ item.text }}</md-button>
+         </md-menu-item>
+      </md-menu-content>
 
-      </md-content>
+   </md-content>
 </md-sidenav>

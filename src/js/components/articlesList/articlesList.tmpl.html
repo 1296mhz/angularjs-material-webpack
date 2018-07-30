@@ -1,30 +1,35 @@
-      <md-card ng-cloak >
-            <md-card-title>
-               <md-card-title-text>
-                  <span class="md-headline">Статьи</span>
-               </md-card-title-text>
-            </md-card-title>
-                  <md-card-actions layout="row" layout-align="start center">
-                     <md-card-icon-actions>
-                        <md-button class="md-icon-button" aria-label="Create" ui-sref="articleNewArticleEditor" ui-sref-active="active">
-                           <md-icon>create</md-icon>
-                        </md-button>
-                     </md-card-icon-actions>
-                     <md-button>Action 1</md-button>
-                     <md-button>Action 2</md-button>
-                  </md-card-actions>
-                  <md-divider></md-divider>
-            <md-card-content>
-               <md-list>
-                  <md-list-item class="md-3-line" ng-repeat="article in $ctrl.items">
-                     <div class="md-list-item-text">
-                        <h3 ng-bind="article.title"></h3>
-                        <h4 ng-bind="article.username"></h4>
-                        <p ng-bind="article.data | cropString"></p>
-                     </div>
-                     <md-button ui-sref="articleEditor({ articleId: article.id })" ui-sref-active="active" class="md-secondary">Редактировать</md-button>
-                     <md-divider ng-if="!$last"></md-divider>
-                  </md-list-item>
-               </md-list>
-            </md-card-content>
-         </md-card>
+<md-card ng-cloak>
+   <md-card-title>
+      <md-card-title-text>
+         <span class="md-headline">Статьи</span>
+      </md-card-title-text>
+   </md-card-title>
+
+   <md-divider></md-divider>
+
+   <md-card-actions layout="row" layout-align="start center">
+      <md-card-icon-actions>
+         <md-button class="md-icon-button" aria-label="Create" ui-sref="articleNewArticleEditor" ui-sref-active="active">
+            <md-icon>create</md-icon>
+         </md-button>
+      </md-card-icon-actions>
+      <md-button>Action 1</md-button>
+      <md-button>Action 2</md-button>
+   </md-card-actions>
+
+   <md-divider></md-divider>
+
+   <md-card-content>
+      <md-list>
+         <md-list-item class="md-3-line" ng-repeat="article in $ctrl.items">
+            <div class="md-list-item-text">
+               <h3 ng-bind="article.title"></h3>
+               <h4 ng-bind="article.username"></h4>
+               <p ng-bind="article.data | cropString"></p>
+            </div>
+            <md-button ui-sref="articleEditor({ articleId: article.id })" ui-sref-active="active" class="md-secondary">Редактировать</md-button>
+            <md-divider ng-if="!$last"></md-divider>
+         </md-list-item>
+      </md-list>
+   </md-card-content>
+</md-card>

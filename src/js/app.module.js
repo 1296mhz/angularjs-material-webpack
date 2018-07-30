@@ -10,6 +10,7 @@ import "./components/header/header.component";
 import "./components/sidebar/sidebar.component";
 import "./components/articlesList/articlesList.component";
 import "./components/articleEditor/articleEditor.component";
+import "./components/profile/profile.component";
 
 import ArticlesHttpService from "./services/articles.service";
 import ProfileHttpService from "./services/profile.service";
@@ -28,9 +29,14 @@ var appModule = angular
     "ArticleEditorModule",
     "ArticlesHttpService",
     "ProfileHttpService",
-    "ConfigStorageService"    
+    "ConfigStorageService",
+    "ProfileModule"   
   ])
   .config(routing)
-  .constant("apiServerHost", "localhost:3001")
+  .constant("apiServerHost", (function(){
+     console.log(window.location.host)
+     const hostname = window.location.host
+     return hostname
+  })())
 
 export default appModule;

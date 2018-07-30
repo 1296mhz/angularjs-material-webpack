@@ -1,33 +1,51 @@
 <md-card ng-cloak>
    <md-card-title>
-      <md-card-actions layout="row" layout-align="start">
-         <md-card-icon-actions>
-            <h1 ng-bind="$ctrl.operation"></h1>
-         </md-card-icon-actions>
-      </md-card-actions>
+      <md-card-title-text>
+         <h1 ng-bind="$ctrl.operation"></h1>
+      </md-card-title-text>
    </md-card-title>
+
+   <md-divider></md-divider>
+
+   <md-card-actions layout="row" layout-align="start">
+      <md-card-icon-actions>
+
+         <md-button class="md-icon-button" ng-click="$ctrl.saveArticleButton()">
+            <md-icon>save</md-icon>
+         </md-button>
+
+         <md-button class="md-icon-button" aria-label="Share">
+            <md-icon>share</md-icon>
+         </md-button>
+
+      </md-card-icon-actions>
+
+   </md-card-actions>
+
+   <md-divider></md-divider>
+
    <md-card-content>
+
       <md-card-title-text>
          <md-input-container class="md-block">
             <label>Заголовок</label>
             <input ng-model="$ctrl.article.title">
          </md-input-container>
       </md-card-title-text>
+
       <md-input-container class="md-block editor-article">
          <textarea aria-label="editorArticle" simplemde='{spellChecker: false, autofocus: true }' ng-model='$ctrl.text' md-maxlength="150000"
             rows="5" md-select-on-focus></textarea>
       </md-input-container>
+
       <md-chips ng-model="$ctrl.tags" md-removable="$ctrl.readonlyTag" placeholder="Введите название тэга" delete-button-label="Удалить тэг"
          delete-hint="Нажмите удалить что бы удалить тэг" secondary-placeholder="+Тэг"></md-chips>
-      <md-card-actions layout="row" layout-align="start">
-         <md-card-icon-actions>
-               <md-button class="md-icon-button" ng-click="$ctrl.saveArticleButton()">
-                     <md-icon>save</md-icon>
-                  </md-button>
-            <md-button class="md-icon-button" aria-label="Share">
-               <md-icon>share</md-icon>
-            </md-button>
-         </md-card-icon-actions>
-      </md-card-actions>
+
+
+
+
    </md-card-content>
+
+
+
 </md-card>

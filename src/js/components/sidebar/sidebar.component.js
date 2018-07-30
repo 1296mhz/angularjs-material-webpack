@@ -1,15 +1,26 @@
 
-_sidebarController.$inject = ['$rootScope', '$mdSidenav'];
+_sidebarController.$inject = [
+   '$rootScope', 
+   '$mdSidenav',
+   'configStorageService'
+];
 
 let SidebarComponent = {
    template: require('./sidebar.tmpl.html'),
    controller: _sidebarController
 };
 
-function _sidebarController($rootScope, $mdSidenav) {
+function _sidebarController($rootScope, $mdSidenav, configStorageService) {
    console.log("Sidebar component contoller")
-
-   this.links = [
+   let $ctrl = this;
+   $ctrl.config = {};
+   
+   $ctrl.links = [
+      {
+         "text": "Профиль",
+         "uisref": "profile",
+         "icon": "account_box"
+      },
       {
          "text": "Список всех статей",
          "uisref": "articlesList",
@@ -21,7 +32,7 @@ function _sidebarController($rootScope, $mdSidenav) {
       }
    ];
 
-   this.toggleSidenav =
+   $ctrl.toggleSidenav =
       buildToggler('closeEventsDisabled');
 
    $rootScope.$on('click', () => {
@@ -33,6 +44,9 @@ function _sidebarController($rootScope, $mdSidenav) {
          $mdSidenav(componentId).toggle();
       };
    }
+
+   $ctrl.config = configStorageService.get();
+
 }
 
 export default angular.module('SidebarModule', [])
