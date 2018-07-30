@@ -16,27 +16,30 @@ import ArticlesHttpService from "./services/articles.service";
 import ProfileHttpService from "./services/profile.service";
 import ConfigStorageService from "./services/configStorage.service";
 
+
+
 var appModule = angular
-  .module("app", [
-    "ui.router",
-    "ngMaterial",
-    "ngAria",
-    "ngMessages",
-    "ScreenContentModule",
-    "HeaderModule",
-    "SidebarModule",
-    "ArticlesListModule",
-    "ArticleEditorModule",
-    "ArticlesHttpService",
-    "ProfileHttpService",
-    "ConfigStorageService",
-    "ProfileModule"   
-  ])
-  .config(routing)
-  .constant("apiServerHost", (function(){
-     console.log(window.location.host)
-     const hostname = window.location.host
-     return hostname
-  })())
+   .module("app", [
+      "ui.router",
+      "ngMaterial",
+      "ngAria",
+      "ngMessages",
+      "ngStorage",
+      "ScreenContentModule",
+      "HeaderModule",
+      "SidebarModule",
+      "ArticlesListModule",
+      "ArticleEditorModule",
+      "ArticlesHttpService",
+      "ProfileHttpService",
+      "ConfigStorageService",
+      "ProfileModule"
+   ])
+   .config(routing)
+   .constant("apiServerHost", (function () {
+      console.log(window.location.host)
+      const hostname = window.location.host
+      return hostname
+   })())
 
 export default appModule;
