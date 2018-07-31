@@ -25,18 +25,19 @@
       <form name="userForm">
          <div layout-gt-sm="row" ng-repeat="bkey in $ctrl.blockchainKeys">
 
-            <md-input-container class="md-block" flex-gt-sm>
-               <label>Имя пользователя</label>
-               <input type="text" ng-model="bkey.username" required>
-            </md-input-container>
 
-            <md-input-container class="md-block" flex-gt-sm>
+            <md-input-container class="md-block" flex>
                <label>Площадка</label>
                <md-select ng-model="bkey.blockchainName" ng-init="vox">
                   <md-option ng-repeat="bname in $ctrl.blockchainName" value="{{bname}}">
                      {{bname}}
                   </md-option>
                </md-select>
+            </md-input-container>
+
+            <md-input-container class="md-block" flex-gt-sm>
+               <label>Имя пользователя</label>
+               <input type="text" ng-model="bkey.username" required>
             </md-input-container>
 
             <md-input-container class="md-block" flex-gt-sm>
@@ -47,9 +48,15 @@
                </div>
             </md-input-container>
 
-            <md-input-container class="md-block" flex-gt-sm>
+            <md-input-container class="md-block">
                <md-button class="md-icon-button" ng-click="$ctrl.saveBlockchain()">
                   <md-icon>save</md-icon>
+               </md-button>
+            </md-input-container>
+
+            <md-input-container class="md-block">
+               <md-button class="md-icon-button" ng-click="$ctrl.removeBlockchain(bkey.hash)">
+                  <md-icon>remove_circle</md-icon>
                </md-button>
             </md-input-container>
          </div>

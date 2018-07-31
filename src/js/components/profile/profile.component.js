@@ -2,7 +2,9 @@
 
 _profileController.$inject = [
    "appToastService",
-   "configStorageService"
+   "configStorageService",
+   '_',
+   "uuid"
 ];
 
 let ProfileComponent = {
@@ -10,7 +12,7 @@ let ProfileComponent = {
    controller: _profileController
 };
 
-function _profileController(appToastService, configStorageService) {
+function _profileController(appToastService, configStorageService, _, uuid) {
    console.log("Profile component contoller")
    let $ctrl = this;
 
@@ -21,7 +23,16 @@ function _profileController(appToastService, configStorageService) {
 
    $ctrl.blockchainKeys = [];
 
-   $ctrl.blockchainKeys = JSON.parse(localStorage.getItem($ctrl.profile.user.id));
+
+   console.log()
+
+   if(localStorage.getItem($ctrl.profile.user.id) !== null){
+      $ctrl.blockchainKeys = JSON.parse(localStorage.getItem($ctrl.profile.user.id));
+   } else {
+      localStorage.setItem($ctrl.profile.user.id, JSON.stringify($ctrl.blockchainKeys))
+   }
+
+   
 
    $ctrl.saveBlockchain = function () {
       localStorage.setItem($ctrl.profile.user.id, JSON.stringify($ctrl.blockchainKeys))
@@ -31,7 +42,9 @@ function _profileController(appToastService, configStorageService) {
 
    $ctrl.addKey = function () {
       console.log("Add key")
+      console.log($ctrl.blockchainKeys)
       let newKey = {
+         hash: uuid.v4(),
          username: "test",
          blockchainName: "vox",
          key: "test"
@@ -40,6 +53,16 @@ function _profileController(appToastService, configStorageService) {
       $ctrl.blockchainKeys.push(newKey)
    };
 
+   $ctrl.removeBlockchain = function (uuid) {
+      console.log(uuid)
+      let res = _.reject($ctrl.blockchainKeys, (data) => {
+         if(data.hash === uuid){
+            return data
+         }
+      })
+      $ctrl.blockchainKeys = res
+      localStorage.setItem($ctrl.profile.user.id, JSON.stringify($ctrl.blockchainKeys))
+   }
 };
 
 export default angular.module('ProfileModule', [])

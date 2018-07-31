@@ -28,6 +28,8 @@ var appModule = angular
       "ngAria",
       "ngMessages",
       "ngStorage",
+      "underscore",
+      "angular-uuid",
       "ScreenContentModule",
       "HeaderModule",
       "SidebarModule",

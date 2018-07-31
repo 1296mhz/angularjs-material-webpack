@@ -20,9 +20,12 @@
     "angular-material": "^1.1.10",
     "angular-messages": "^1.7.2",
     "angular-sanitize": "^1.7.2",
+    "angular-underscore": "0.0.3",
+    "angular-uuid": "0.0.4",
     "http-server": "^0.11.1",
     "ngstorage": "^0.3.11",
-    "roboto-fontface": "^0.9.0"
+    "roboto-fontface": "^0.9.0",
+    "underscore": "^1.9.1"
   },
   "devDependencies": {
     "angularjs-template-loader": "^0.1.1",
