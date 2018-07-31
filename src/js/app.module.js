@@ -1,10 +1,14 @@
 import "./dep.module";
+
+import apiServerHost from "./constatnts/apiServerHost.constant";
+
 import "@uirouter/angularjs";
 import routing from "./app.config";
 import "../../node_modules/angular-material/angular-material.css";
 
 // import '../css/material-icons.css';
 import "../css/style.css";
+
 import "./components/screenContent/screenContent.component";
 import "./components/header/header.component";
 import "./components/sidebar/sidebar.component";
@@ -15,8 +19,7 @@ import "./components/profile/profile.component";
 import ArticlesHttpService from "./services/articles.service";
 import ProfileHttpService from "./services/profile.service";
 import ConfigStorageService from "./services/configStorage.service";
-
-
+import AppToastServiceModule from "./services/appToast.service";
 
 var appModule = angular
    .module("app", [
@@ -30,16 +33,13 @@ var appModule = angular
       "SidebarModule",
       "ArticlesListModule",
       "ArticleEditorModule",
+      "ProfileModule",
       "ArticlesHttpService",
       "ProfileHttpService",
       "ConfigStorageService",
-      "ProfileModule"
+      "AppToastServiceModule"
    ])
    .config(routing)
-   .constant("apiServerHost", (function () {
-      console.log(window.location.host)
-      const hostname = window.location.host
-      return hostname
-   })())
+   .constant("apiServerHost", apiServerHost)
 
 export default appModule;

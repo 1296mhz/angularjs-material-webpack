@@ -4,7 +4,7 @@ import "../../vendor/smde/simplemde-angular/dist/simplemde-angular";
 
 _articleEditorController.$inject = [
   "$stateParams",
-  "$mdToast",
+  "appToastService",
   "articlesHttpService",
   "configStorageService"
 ];
@@ -16,7 +16,7 @@ let ArticleEditorComponent = {
 
 function _articleEditorController(
   $stateParams,
-  $mdToast,
+  appToastService,
   articlesHttpService,
   configStorageService
 ) {
@@ -42,16 +42,6 @@ function _articleEditorController(
     getArticle();
   } else {
     $ctrl.operation = "Создание новой статьи";
-  }
-
-  function showSimpleToast(message) {
-    $mdToast.show(
-      $mdToast
-        .simple()
-        .textContent(message)
-        .position("top right")
-        .hideDelay(3000)
-    );
   }
 
   function getArticle() {
@@ -81,11 +71,11 @@ function _articleEditorController(
       articlesHttpService.updateArticle(articleId, $ctrl.article).then(
         data => {
           console.log(data.data.message);
-          showSimpleToast(data.data.message);
+          appToastService.send(data.data.message);
         },
         err => {
           console.log(err);
-          showSimpleToast(err);
+          appToastService.send(err);
         }
       );
       getArticle();
@@ -94,10 +84,10 @@ function _articleEditorController(
       console.log("Новый", $ctrl.article)
       articlesHttpService.addArticle($ctrl.article).then(
         data => {
-          showSimpleToast(data.data.message);
+          appToastService.send(data.data.message);
         },
         err => {
-          showSimpleToast(err);
+         appToastService.send(err);
         }
       );
     }

@@ -17,16 +17,15 @@ function _articlesListController(articlesHttpService) {
       articlesHttpService.getArticles().then((data) => {
          $ctrl.items = data.data
       })
-   }
+   };
 
    this.toggleEdit = function(articleId) {
       $ctrl.articleId = articleId
       console.log(articleId)
-   }
+   };
 
    getPosts()
-
-}
+};
 
 export default angular.module('ArticlesListModule', ['ArticlesFilters'])
    .component('articlesListComponent', ArticlesListComponent)

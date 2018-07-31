@@ -9,7 +9,7 @@
       <section>
          <md-list layout-padding>
             <md-list-item class="md-3-line subheaderProfile">
-               <!-- <img ng-src="$ctrl.config.user.user.photo" class="md-avatar"> -->
+               <img ng-src="{{ $ctrl.config.user.user.photo }}" class="md-avatar" alt="{{ $ctrl.config.user.user.name }}">
                <div class="md-list-item-text">
                   <h3 ng-bind="$ctrl.config.user.user.name"></h3>
                   <h4 ng-bind="$ctrl.config.user.user.email"></h4>

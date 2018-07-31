@@ -24,7 +24,7 @@ function _sidebarController($rootScope, $mdSidenav, configStorageService) {
       {
          "text": "Список всех статей",
          "uisref": "articlesList",
-         "icon": "notes"
+         "icon": "list"
       }, {
          "text": "Редактор",
          "uisref": "articleNewArticleEditor",

@@ -1,7 +1,7 @@
 
 
 _profileController.$inject = [
-   "$localStorage",
+   "appToastService",
    "configStorageService"
 ];
 
@@ -10,36 +10,36 @@ let ProfileComponent = {
    controller: _profileController
 };
 
-function _profileController($localStorage, configStorageService) {
+function _profileController(appToastService, configStorageService) {
    console.log("Profile component contoller")
    let $ctrl = this;
 
    $ctrl.operation = "Профиль";
+   $ctrl.blockchainName = ['vox', 'steem', 'golos'];
    $ctrl.profile = {};
    $ctrl.profile = configStorageService.get("user");
 
-   $ctrl.$storage = $localStorage;
-   console.log("localstorage")
-   $ctrl.$storage.ccc = $ctrl.profile.user.user
-   console.log($ctrl.$storage.ccc);
    $ctrl.blockchainKeys = [];
 
-   $ctrl.blockchainName = ['vox', 'steem', 'golos'];
+   $ctrl.blockchainKeys = JSON.parse(localStorage.getItem($ctrl.profile.user.id));
 
    $ctrl.saveBlockchain = function () {
-      console.log()
+      localStorage.setItem($ctrl.profile.user.id, JSON.stringify($ctrl.blockchainKeys))
+      console.log(localStorage.getItem($ctrl.profile.user.id))
+      appToastService.send("Сохранено в локальное хранилище.")
    };
 
    $ctrl.addKey = function () {
       console.log("Add key")
       let newKey = {
-         username: "",
+         username: "test",
          blockchainName: "vox",
-         key: ""
+         key: "test"
       };
 
       $ctrl.blockchainKeys.push(newKey)
    };
+
 };
 
 export default angular.module('ProfileModule', [])
