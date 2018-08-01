@@ -4,6 +4,7 @@ require('babel-loader');
 require('file-loader');
 require('raw-loader');
 require('svg-url-loader');
+const Visualizer = require('webpack-visualizer-plugin');
 module.exports = {
    "mode": "production",
    "entry": {
@@ -56,6 +57,11 @@ module.exports = {
          }
       ]
    },
+   plugins: [
+      new Visualizer({
+         filename: './dist/statistics.html'
+      })
+   ],
    performance: { hints: false },
    devServer: {
       hot: true,
