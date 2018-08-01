@@ -1,3 +1,4 @@
+"use strict";
 const voxLib = require('../vendor/chain-js/index');
 
 /*
@@ -9,6 +10,7 @@ const voxLib = require('../vendor/chain-js/index');
 })(getNetwork("vox"));
 */
 //   "params": ["parent_author", "parent_permlink", "author", "permlink", "title", "body", "json_metadata"]
+
  function _voxService() {
    return {
       comment: async (network, POSTING_KEY, parent_author, parent_permlink, author, permlink, title, body, json_metadata) => {

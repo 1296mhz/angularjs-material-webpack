@@ -20,7 +20,7 @@ import ArticlesHttpService from "./services/articles.service";
 import ProfileHttpService from "./services/profile.service";
 import ConfigStorageService from "./services/configStorage.service";
 import AppToastServiceModule from "./services/appToast.service";
-//import VoxServiceModule from "./services/vox.service";
+import VoxServiceModule from "./services/vox.service";
 
 var appModule = angular
    .module("app", [
@@ -41,7 +41,7 @@ var appModule = angular
       "ProfileHttpService",
       "ConfigStorageService",
       "AppToastServiceModule",
-    //  "VoxServiceModule"
+      "VoxServiceModule"
    ])
    .config(routing)
    .constant("apiServerHost", apiServerHost)

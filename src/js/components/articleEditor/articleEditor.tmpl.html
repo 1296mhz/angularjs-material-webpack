@@ -18,6 +18,10 @@
             <md-icon>list</md-icon>
          </md-button>
 
+         <md-button ng-click="$ctrl.voxComment()" class="md-icon-button" aria-label="VoxShareArticle" >
+            <md-icon>share</md-icon>
+         </md-button>
+
       </md-card-icon-actions>
 
    </md-card-actions>
@@ -40,9 +44,6 @@
 
       <md-chips ng-model="$ctrl.tags" md-removable="$ctrl.readonlyTag" placeholder="Введите название тэга" delete-button-label="Удалить тэг"
          delete-hint="Нажмите удалить что бы удалить тэг" secondary-placeholder="+Тэг"></md-chips>
-
-
-
 
    </md-card-content>
 

@@ -8,6 +8,7 @@ module.exports = {
    "mode": "production",
    "entry": {
       vendors: [
+         "babel-polyfill",
          "./src/js/app.module.js",
       ]
    },
