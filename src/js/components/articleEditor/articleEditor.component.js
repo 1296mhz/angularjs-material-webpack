@@ -145,9 +145,9 @@ function _articleEditorController(
 
    };
 
-   $ctrl.shares = async function (bcNetwork) {
-      
-      let accountChain = _.findWhere($ctrl.networks, { bcNetwork: bcNetwork, type: "posting" })
+   $ctrl.shares = async function (bcNetwork, username) {
+
+      let accountChain = _.findWhere($ctrl.networks, { bcNetwork: bcNetwork, username: username, type: "posting" })
 
       try{
          const res = await voxService.sendComment(

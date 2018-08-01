@@ -24,7 +24,7 @@
             </md-button>
             <md-menu-content width="4" ng-mouseleave="$mdMenu.close()">
               <md-menu-item ng-repeat="item in $ctrl.networks">
-                <md-button ng-click="$ctrl.shares(item.bcNetwork)">
+                <md-button ng-click="$ctrl.shares(item.bcNetwork, item.username)">
                   {{ item.username }}@{{item.bcNetwork}} 
                 </md-button>
               </md-menu-item>
