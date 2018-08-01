@@ -26,9 +26,9 @@
          <div layout-gt-sm="row" ng-repeat="bkey in $ctrl.blockchainKeys">
 
             <md-input-container class="md-block" flex>
-               <label>Площадка</label>
-               <md-select ng-model="bkey.blockchainName" ng-init="vox">
-                  <md-option ng-repeat="bname in $ctrl.blockchainName" value="{{bname}}">
+               <label>Сеть</label>
+               <md-select ng-model="bkey.bcNetwork" ng-init="vox">
+                  <md-option ng-repeat="bname in $ctrl.bcNetwork" value="{{bname}}">
                      {{bname}}
                   </md-option>
                </md-select>

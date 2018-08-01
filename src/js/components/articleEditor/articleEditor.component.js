@@ -4,6 +4,8 @@ import "../../vendor/smde/simplemde-angular/dist/simplemde-angular";
 
 _articleEditorController.$inject = [
    "$stateParams",
+   "_",
+   "$mdMenu",
    "appToastService",
    "articlesHttpService",
    "configStorageService",
@@ -17,12 +19,13 @@ let ArticleEditorComponent = {
 
 function _articleEditorController(
    $stateParams,
+   _,
+   $mdMenu,
    appToastService,
    articlesHttpService,
    configStorageService,
    voxService
-)
-{
+) {
    let articleId = $stateParams.articleId;
    let $ctrl = this;
    $ctrl.operation = "";
@@ -37,6 +40,9 @@ function _articleEditorController(
 
    console.log("Article editor");
    $ctrl.profile = configStorageService.get("user");
+   $ctrl.profileStorage = JSON.parse(localStorage.getItem($ctrl.profile.user.id));
+   $ctrl.networks = _.where($ctrl.profileStorage, { type: "posting" });
+   console.log("networ", $ctrl.networks)
 
    console.log("Username: ", $ctrl.profile.user.name);
 
@@ -45,7 +51,7 @@ function _articleEditorController(
       getArticle();
    } else {
       $ctrl.operation = "Создание новой статьи";
-   }
+   };
 
    function getArticle() {
       articlesHttpService.getArticle(articleId).then(
@@ -68,7 +74,7 @@ function _articleEditorController(
    $ctrl.saveArticleButton = function () {
       $ctrl.article.tags = $ctrl.tags.join(",");
       $ctrl.article.data = $ctrl.text;
-      $ctrl.article.username = $ctrl.profile.user.name
+      $ctrl.article.username = $ctrl.profile.user.name;
       if (articleId !== undefined) {
          console.log($ctrl.article);
          articlesHttpService.updateArticle(articleId, $ctrl.article).then(
@@ -93,14 +99,75 @@ function _articleEditorController(
                appToastService.send(err);
             }
          );
-      }
+      };
    };
 
-$ctrl.voxComment = function(){
-   voxService.comment("vox", )
-}
+   $ctrl.voxComment = async function ($mdMenu, $event) {
+      if (localStorage.getItem($ctrl.profile.user.id) !== null) {
+         let networks = _.find($ctrl.profileStorage, { type: "posting" });
+         if (networks !== undefined) {
+            console.log("Выберети сеть")
+            console.log(networks)
+         } else {
+            appToastService.send("Нет ни одного ключа для постинга!");
+         }
+      } else {
+         appToastService.send("Нет ни одного ключа!");
+      };
 
-}
+    
+
+      /*
+      if (localStorage.getItem($ctrl.profile.user.id) !== null) {
+         let accountChain = _.findWhere($ctrl.profileStorage, { blockchainName: 'vox' })
+
+         try{
+            const res = await voxService.sendComment(
+               "vox",
+               accountChain.key, //POSTING_KEY
+               "cash", // parent_author
+               $ctrl.tags[0] || "", //parent_permlink
+               accountChain.username, //author
+               $ctrl.article.title, //permlink
+               $ctrl.article.title, //title
+               $ctrl.text, //body
+               {}
+            )
+            console.log(res)
+         }catch(err){
+            console.log(err)
+         }
+    
+      } else {
+         console.log("Нет ключа для постинга")
+      }
+*/
+
+   };
+
+   $ctrl.shares = async function (bcNetwork) {
+      
+      let accountChain = _.findWhere($ctrl.networks, { bcNetwork: bcNetwork, type: "posting" })
+
+      try{
+         const res = await voxService.sendComment(
+            "vox",
+            accountChain.key, //POSTING_KEY
+            "cash", // parent_author
+            $ctrl.tags[0] || "", //parent_permlink
+            accountChain.username, //author
+            $ctrl.article.title, //permlink
+            $ctrl.article.title, //title
+            $ctrl.text, //body
+            {}
+         )
+         console.log(res)
+      }catch(err){
+         console.log(err)
+      }
+
+   }
+};
 
 export default angular
    .module("ArticleEditorModule", ["ArticlesFilters", "simplemde"])

@@ -1,33 +1,35 @@
-"use strict";
-const voxLib = require('../vendor/chain-js/index');
+import ChainJsModule from './chainjs.service'
 
-/*
-(async (network)=>{
-   const POSTING_KEY = ".....";
-   const permlink = createCommentPermlink("vugluskr");
-   const res = await comment(network, POSTING_KEY, "", "ru-test", "vugluskr", permlink, "test", "test body", {});
-   console.log(res);
-})(getNetwork("vox"));
-*/
-//   "params": ["parent_author", "parent_permlink", "author", "permlink", "title", "body", "json_metadata"]
+_voxService.$inject = ['chainJsService'];
 
- function _voxService() {
+function _voxService(chainJsService) {
    return {
-      comment: async (network, POSTING_KEY, parent_author, parent_permlink, author, permlink, title, body, json_metadata) => {
+
+      /**
+       * @param  {} network - Сеть vox, golos, steem
+       * @param  {} POSTING_KEY - Ключ для постинга
+       * @param  {} parent_author - "" for a new post
+       * @param  {} parent_permlink - main tag 
+       * @param  {} author -  author username
+       * @param  {} permlink - post permlink
+       * @param  {} title - post title
+       * @param  {} body - post body
+       * @param  {} json_metadata
+       */
+
+      sendComment: async (network, POSTING_KEY, parent_author, parent_permlink, author, permlink, title, body, json_metadata) => {
+
+         network = await chainJsService.getNetwork("vox");
        
-            parent_author || "";
-            parent_permlink || "";
-            author || "";
-            title || "unknown";
-            body || "unknown";
-            json_metadata || {};
-      
-         permlink = voxLib.createCommentPermlink(parent_author);
-         const res = await voxLib.comment(network, POSTING_KEY, parent_author, parent_permlink, author, permlink, title, body, json_metadata);
+         permlink = await chainJsService.createCommentPermlink("cash");
+ 
+   
+         const res = await chainJsService.comment(network, POSTING_KEY, "", parent_permlink, author, permlink, title, body, {});
+        
          return res
       }
    }
 }
 
-export default angular.module('VoxServiceModule', [])
+export default angular.module('VoxServiceModule', ['ChainJsModule'])
    .factory('voxService', _voxService)

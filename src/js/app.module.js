@@ -1,6 +1,6 @@
 import "./dep.module";
 
-import apiServerHost from "./constatnts/apiServerHost.constant";
+import apiServerHost from "./constants/apiServerHost.constant";
 
 import "@uirouter/angularjs";
 import routing from "./app.config";

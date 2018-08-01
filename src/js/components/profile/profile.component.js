@@ -1,5 +1,3 @@
-
-
 _profileController.$inject = [
    "appToastService",
    "configStorageService",
@@ -17,22 +15,16 @@ function _profileController(appToastService, configStorageService, _, uuid) {
    let $ctrl = this;
 
    $ctrl.operation = "Профиль";
-   $ctrl.blockchainName = ['vox', 'steem', 'golos'];
+   $ctrl.bcNetwork = ['vox', 'steem', 'golos'];
    $ctrl.profile = {};
    $ctrl.profile = configStorageService.get("user");
-
    $ctrl.blockchainKeys = [];
-
-
-   console.log()
 
    if(localStorage.getItem($ctrl.profile.user.id) !== null){
       $ctrl.blockchainKeys = JSON.parse(localStorage.getItem($ctrl.profile.user.id));
    } else {
       localStorage.setItem($ctrl.profile.user.id, JSON.stringify($ctrl.blockchainKeys))
    }
-
-   
 
    $ctrl.saveBlockchain = function () {
       localStorage.setItem($ctrl.profile.user.id, JSON.stringify($ctrl.blockchainKeys))
@@ -46,8 +38,9 @@ function _profileController(appToastService, configStorageService, _, uuid) {
       let newKey = {
          hash: uuid.v4(),
          username: "test",
-         blockchainName: "vox",
-         key: "test"
+         bcNetwork: "vox",
+         key: "test",
+         type: "posting"
       };
 
       $ctrl.blockchainKeys.push(newKey)

@@ -18,9 +18,18 @@
             <md-icon>list</md-icon>
          </md-button>
 
-         <md-button ng-click="$ctrl.voxComment()" class="md-icon-button" aria-label="VoxShareArticle" >
-            <md-icon>share</md-icon>
-         </md-button>
+         <md-menu>
+            <md-button aria-label="Open menu with custom trigger" class="md-icon-button" ng-mouseenter="$mdMenu.open()">
+               <md-icon>share</md-icon>
+            </md-button>
+            <md-menu-content width="4" ng-mouseleave="$mdMenu.close()">
+              <md-menu-item ng-repeat="item in $ctrl.networks">
+                <md-button ng-click="$ctrl.shares(item.bcNetwork)">
+                  Разместить в {{item.bcNetwork}}
+                </md-button>
+              </md-menu-item>
+            </md-menu-content>
+          </md-menu>
 
       </md-card-icon-actions>
 
