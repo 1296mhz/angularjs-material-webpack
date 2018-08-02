@@ -102,67 +102,25 @@ function _articleEditorController(
       };
    };
 
-   $ctrl.voxComment = async function ($mdMenu, $event) {
-      if (localStorage.getItem($ctrl.profile.user.id) !== null) {
-         let networks = _.find($ctrl.profileStorage, { type: "posting" });
-         if (networks !== undefined) {
-            console.log("Выберети сеть")
-            console.log(networks)
-         } else {
-            appToastService.send("Нет ни одного ключа для постинга!");
-         }
-      } else {
-         appToastService.send("Нет ни одного ключа!");
-      };
-
-    
-
-      /*
-      if (localStorage.getItem($ctrl.profile.user.id) !== null) {
-         let accountChain = _.findWhere($ctrl.profileStorage, { blockchainName: 'vox' })
-
-         try{
-            const res = await voxService.sendComment(
-               "vox",
-               accountChain.key, //POSTING_KEY
-               "cash", // parent_author
-               $ctrl.tags[0] || "", //parent_permlink
-               accountChain.username, //author
-               $ctrl.article.title, //permlink
-               $ctrl.article.title, //title
-               $ctrl.text, //body
-               {}
-            )
-            console.log(res)
-         }catch(err){
-            console.log(err)
-         }
-    
-      } else {
-         console.log("Нет ключа для постинга")
-      }
-*/
-
-   };
-
    $ctrl.shares = async function (bcNetwork, username) {
-
+      console.log(bcNetwork, username)
       let accountChain = _.findWhere($ctrl.networks, { bcNetwork: bcNetwork, username: username, type: "posting" })
-
-      try{
-         const res = await voxService.sendComment(
-            "vox",
-            accountChain.key, //POSTING_KEY
-            "cash", // parent_author
-            $ctrl.tags[0] || "", //parent_permlink
-            accountChain.username, //author
-            $ctrl.article.title, //permlink
-            $ctrl.article.title, //title
-            $ctrl.text, //body
-            {}
-         )
+     
+      try {
+         const network = voxService.getNetwork(bcNetwork)
+         const POSTING_KEY = accountChain.key;
+         const parent_author = accountChain.username;
+         const parent_permlink = $ctrl.tags[0];
+         const author = accountChain.username;
+         const permlink = voxService.createCommentPermlink(accountChain.username);
+         const title = $ctrl.article.title;
+         const body = $ctrl.text;
+         console.log(body)
+         // network, POSTING_KEY, "", "ru-test", "cash", permlink, "test", "test body", {}
+         //const res = await voxService.sendComment(network, POSTING_KEY, parent_author, parent_permlink, author, permlink, title, body, {});
+       //  const res = await voxService.sendComment(network, POSTING_KEY, "", "ru-test", author, permlink, "test", "Hello world", {});
          console.log(res)
-      }catch(err){
+      } catch (err) {
          console.log(err)
       }
 

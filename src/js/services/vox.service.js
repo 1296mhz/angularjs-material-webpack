@@ -17,16 +17,22 @@ function _voxService(chainJsService) {
        * @param  {} json_metadata
        */
 
+      getNetwork: (network) => {
+         const result = chainJsService.getNetwork(network);
+         return result
+      },
+      createCommentPermlink: (permlink) =>{
+         let resultPermlink = chainJsService.createCommentPermlink(permlink);
+         return resultPermlink
+      },
       sendComment: async (network, POSTING_KEY, parent_author, parent_permlink, author, permlink, title, body, json_metadata) => {
 
-         network = await chainJsService.getNetwork("vox");
-       
-         permlink = await chainJsService.createCommentPermlink("cash");
- 
-   
-         const res = await chainJsService.comment(network, POSTING_KEY, "", parent_permlink, author, permlink, title, body, {});
-        
-         return res
+         console.log("VOXSERVICE", "params");
+         console.log(network, POSTING_KEY, parent_author, parent_permlink, author, permlink, title, body, json_metadata);
+                              
+         const res = await chainJsService.comment(network, POSTING_KEY, parent_author, parent_permlink, author, permlink, title, body, {});
+
+         return res;
       }
    }
 }
