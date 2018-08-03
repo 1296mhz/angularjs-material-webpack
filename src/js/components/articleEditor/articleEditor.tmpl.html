@@ -10,7 +10,7 @@
    <md-card-actions layout="row" layout-align="start">
       <md-card-icon-actions>
 
-         <md-button class="md-icon-button" ng-click="$ctrl.saveArticleButton()">
+         <md-button ng-show="$ctrl.tags.length > 0" class="md-icon-button" ng-click="$ctrl.saveArticleButton()">
             <md-icon>save</md-icon>
          </md-button>
 
@@ -22,6 +22,7 @@
             <md-button aria-label="Open menu with custom trigger" class="md-icon-button" ng-mouseenter="$mdMenu.open()">
                <md-icon>share</md-icon>
             </md-button>
+            
             <md-menu-content width="4" ng-mouseleave="$mdMenu.close()">
               <md-menu-item ng-repeat="item in $ctrl.networks">
                 <md-button ng-click="$ctrl.shares(item.bcNetwork, item.username)">

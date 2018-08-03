@@ -28,11 +28,18 @@ function _voxService(chainJsService) {
       sendComment: async (network, POSTING_KEY, parent_author, parent_permlink, author, permlink, title, body, json_metadata) => {
 
          console.log("VOXSERVICE", "params");
-         console.log(network, POSTING_KEY, parent_author, parent_permlink, author, permlink, title, body, json_metadata);
-                              
-         const res = await chainJsService.comment(network, POSTING_KEY, parent_author, parent_permlink, author, permlink, title, body, {});
-
-         return res;
+         console.log("network", POSTING_KEY, parent_author, parent_permlink, author, permlink, title, body, json_metadata, "\n");
+                    
+         try{
+            console.log("PARENT AUTHORЖ ", parent_author)
+          //const res = await chainJsService.comment(network, POSTING_KEY, parent_author, parent_permlink, author, permlink, title, body, {});
+            const res = await chainJsService.comment(network, POSTING_KEY, "", parent_permlink, author, permlink, title, body, {});
+            
+            return res;
+         }catch(err){
+            return err
+         }
+         
       }
    }
 }

@@ -110,20 +110,25 @@ function _articleEditorController(
          const network = voxService.getNetwork(bcNetwork)
          const POSTING_KEY = accountChain.key;
          const parent_author = accountChain.username;
-         const parent_permlink = $ctrl.tags[0];
+         const parent_permlink = $ctrl.tags[0] ;
          const author = accountChain.username;
          const permlink = voxService.createCommentPermlink(accountChain.username);
          const title = $ctrl.article.title;
          const body = $ctrl.text;
-         console.log(body)
+      
+         console.log("POSTINGKEY: ", POSTING_KEY)
          // network, POSTING_KEY, "", "ru-test", "cash", permlink, "test", "test body", {}
-         //const res = await voxService.sendComment(network, POSTING_KEY, parent_author, parent_permlink, author, permlink, title, body, {});
+         const res = await voxService.sendComment(network, POSTING_KEY, parent_author, parent_permlink, author, permlink, title, body, {});
        //  const res = await voxService.sendComment(network, POSTING_KEY, "", "ru-test", author, permlink, "test", "Hello world", {});
          console.log(res)
       } catch (err) {
          console.log(err)
       }
 
+   }
+
+   $ctrl.ppp = function(){
+      console.log("TAGS: ", $ctrl.tags)
    }
 };
 
