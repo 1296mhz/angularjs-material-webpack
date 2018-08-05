@@ -23,27 +23,28 @@ import AppToastServiceModule from "./services/appToast.service";
 import VoxServiceModule from "./services/vox.service";
 
 var appModule = angular
-   .module("app", [
-      "ui.router",
-      "ngMaterial",
-      "ngAria",
-      "ngMessages",
-      "ngStorage",
-      "underscore",
-      "angular-uuid",
-      "ScreenContentModule",
-      "HeaderModule",
-      "SidebarModule",
-      "ArticlesListModule",
-      "ArticleEditorModule",
-      "ProfileModule",
-      "ArticlesHttpService",
-      "ProfileHttpService",
-      "ConfigStorageService",
-      "AppToastServiceModule",
-      "VoxServiceModule"
-   ])
-   .config(routing)
-   .constant("apiServerHost", apiServerHost)
+  .module("app", [
+    "ui.router",
+    "ngMaterial",
+    "ngAria",
+    "ngMessages",
+    "underscore",
+    "angularMoment",
+    "angular-uuid",
+    "ScreenContentModule",
+    "HeaderModule",
+    "SidebarModule",
+    "ArticlesListModule",
+    "ArticleEditorModule",
+    "ProfileModule",
+    "ArticlesHttpService",
+    "ProfileHttpService",
+    "ConfigStorageService",
+    "AppToastServiceModule",
+    "VoxServiceModule"
+  ])
+  .config(routing)
+  .constant("apiServerHost", apiServerHost)
+ 
 
 export default appModule;

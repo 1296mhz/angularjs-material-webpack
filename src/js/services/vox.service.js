@@ -27,8 +27,8 @@ function _voxService(chainJsService) {
       },
       sendComment: async (network, POSTING_KEY, parent_author, parent_permlink, author, permlink, title, body, json_metadata) => {
 
-         console.log("VOXSERVICE", "params");
-         console.log("network", POSTING_KEY, parent_author, parent_permlink, author, permlink, title, body, json_metadata, "\n");
+        //  console.log("VOXSERVICE", "params");
+        //  console.log("network", POSTING_KEY, parent_author, parent_permlink, author, permlink, title, body, json_metadata, "\n");
                     
          try{
             console.log("PARENT AUTHORЖ ", parent_author)

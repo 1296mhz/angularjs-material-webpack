@@ -3,6 +3,9 @@
       <md-card-title-text>
          <h1 ng-bind="$ctrl.operation"></h1>
       </md-card-title-text>
+      <md-card-title-text>
+          <md-progress-circular ng-hide="!$ctrl.activated" md-mode="determinate" value="{{$ctrl.determinateValue}}"></md-progress-circular>
+      </md-card-title-text>
    </md-card-title>
 
    <md-divider></md-divider>

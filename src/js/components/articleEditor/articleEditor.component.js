@@ -6,6 +6,7 @@ _articleEditorController.$inject = [
   "$stateParams",
   "_",
   "$mdMenu",
+  "$interval",
   "appToastService",
   "articlesHttpService",
   "configStorageService",
@@ -21,6 +22,7 @@ function _articleEditorController(
   $stateParams,
   _,
   $mdMenu,
+  $interval,
   appToastService,
   articlesHttpService,
   configStorageService,
@@ -38,20 +40,22 @@ function _articleEditorController(
   $ctrl.article.data = "";
   $ctrl.readonlyTag = true;
 
-  console.log("Article editor");
+  $ctrl.determinateValue = 30;
+
   $ctrl.profile = configStorageService.get("user");
+
   $ctrl.profileStorage = JSON.parse(
     localStorage.getItem($ctrl.profile.user.id)
   );
-  $ctrl.networks = _.where($ctrl.profileStorage, { type: "posting" });
-  console.log("networ", $ctrl.networks);
 
-  console.log("Username: ", $ctrl.profile.user.name);
+  $ctrl.networks = _.where($ctrl.profileStorage, { type: "posting" });
 
   if (articleId !== undefined) {
+    $ctrl.activated = false;
     $ctrl.operation = "Редактирование статьи";
     getArticle();
   } else {
+    $ctrl.activated = false;
     $ctrl.operation = "Создание новой статьи";
   }
 
@@ -93,7 +97,7 @@ function _articleEditorController(
       getArticle();
     } else {
       $ctrl.article.state = "created";
-      console.log("Новый", $ctrl.article);
+
       articlesHttpService.addArticle($ctrl.article).then(
         data => {
           articleId = data.data.id;
@@ -107,7 +111,16 @@ function _articleEditorController(
   };
 
   $ctrl.shares = async function(bcNetwork, username) {
-    console.log(bcNetwork, username);
+    $ctrl.activated = true;
+    // Iterate every 100ms, non-stop and increment
+    // the Determinate loader.
+    let spiner = $interval(function() {
+      $ctrl.determinateValue += 1;
+      if ($ctrl.determinateValue > 100) {
+        $ctrl.determinateValue = 0;
+      }
+    }, 100);
+    
     let accountChain = _.findWhere($ctrl.networks, {
       bcNetwork: bcNetwork,
       username: username,
@@ -124,8 +137,6 @@ function _articleEditorController(
       const title = $ctrl.article.title;
       const body = $ctrl.text;
 
-      console.log("POSTINGKEY: ", POSTING_KEY);
-      // network, POSTING_KEY, "", "ru-test", "cash", permlink, "test", "test body", {}
       const res = await voxService.sendComment(
         network,
         POSTING_KEY,
@@ -137,15 +148,23 @@ function _articleEditorController(
         body,
         {}
       );
-      //  const res = await voxService.sendComment(network, POSTING_KEY, "", "ru-test", author, permlink, "test", "Hello world", {});
+
       console.log(res);
+      if (res.name === "RPCError") {
+        $ctrl.activated = false;
+        appToastService.send("Ошибка размещения на " + bcNetwork);
+        $interval.cancel(spiner);
+      } else {
+        $ctrl.activated = false;
+        $interval.cancel(spiner);
+        appToastService.send("Опубликовано на " + bcNetwork);
+      }
     } catch (err) {
+      appToastService.send("Ошибка размещения на " + bcNetwork);
+      $interval.cancel(spiner);
+      $ctrl.activated = false;
       console.log(err);
     }
-  };
-
-  $ctrl.ppp = function() {
-    console.log("TAGS: ", $ctrl.tags);
   };
 }
 

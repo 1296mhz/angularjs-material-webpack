@@ -1,14 +1,15 @@
 
 import '../../filters/ArticlesFilters.module';
+import moment from 'moment';
 
-_articlesListController.$inject = ['articlesHttpService'];
+_articlesListController.$inject = ['articlesHttpService', 'appToastService'];
 
 let ArticlesListComponent = {
    template: require('./articlesList.tmpl.html'),
    controller: _articlesListController,
 };
 
-function _articlesListController(articlesHttpService) {
+function _articlesListController(articlesHttpService, appToastService) {
 
    var $ctrl = this;
    $ctrl.items = [];
@@ -19,7 +20,18 @@ function _articlesListController(articlesHttpService) {
       })
    };
 
-   this.toggleEdit = function(articleId) {
+   $ctrl.articleRemove = function(articleId){
+    articlesHttpService.deleteArticle(articleId).then((data) => {
+        //$ctrl.items = data.data
+        appToastService.send(data.data.message);
+        getPosts()
+     },
+    (err) => {
+        appToastService.send(err);
+    })
+   }
+
+   $ctrl.toggleEdit = function(articleId) {
       $ctrl.articleId = articleId
       console.log(articleId)
    };
