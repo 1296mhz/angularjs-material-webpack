@@ -33,7 +33,8 @@ function _sidebarController($rootScope, $mdSidenav, configStorageService) {
    ];
 
    $ctrl.toggleSidenav =
-      buildToggler('closeEventsDisabled');
+      //buildToggler('closeEventsDisabled');
+      buildToggler('leftSidenav');
 
    $rootScope.$on('click', () => {
       this.toggleSidenav()
