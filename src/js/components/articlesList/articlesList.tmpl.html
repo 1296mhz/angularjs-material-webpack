@@ -22,7 +22,7 @@
 
     <md-card-content>
         <md-list>
-            <md-list-item class="md-3-line" ng-repeat="article in $ctrl.items">
+            <md-list-item class="md-3-line" ng-repeat="article in $ctrl.items | orderBy : sortDate : true">
                 <div class="md-list-item-text">
                     <h4>{{ article.username }} <span ng-bind="article.created_at | amUtc | amLocal | amDateFormat:'MM.DD.YYYY HH:mm:ss'"></span></h4>
                     <h3 ng-bind="article.title"></h3>

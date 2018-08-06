@@ -1,8 +1,7 @@
-import ChainJsModule from './chainjs.service'
 
-_submitService.$inject = ['chainJsService'];
+_submitService.$inject = ['$http', 'apiServerHost'];
 
-function _submitService(chainJsService) {
+function _submitService($http, apiServerHost) {
    return {
       getSubmits: () => {
          return $http.get('http://' + apiServerHost + '/api/v1/submits');

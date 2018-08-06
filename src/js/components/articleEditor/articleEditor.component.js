@@ -165,29 +165,44 @@ function _articleEditorController(
          );
 
          console.log(res);
+
+         if (res.cause) {
+            console.log("Ошибка сохранения: " + res.cause)
+
+            if (res.cause === "RPCError: Assert Exception:( now - auth.last_root_post ) > STEEM_MIN_ROOT_COMMENT_INTERVAL: You may only post once every 5 minutes.") {
+               appToastService.send("Отправка поста возможна не чаще раза в пять минут: " + bcNetwork);
+            }
+         }
+         /*
          if(res.cause.message === "Assert Exception:( now - auth.last_root_post ) > STEEM_MIN_ROOT_COMMENT_INTERVAL: You may only post once every 5 minutes."){
             $ctrl.activated = false;
             appToastService.send("Возможно публиковать не чаще чем раз в пять минут. Ошибка размещения на " + bcNetwork);
             $interval.cancel(spiner);
          }
+         */
          if (res.name === "RPCError") {
             $ctrl.activated = false;
             appToastService.send("Ошибка размещения на " + bcNetwork);
             $interval.cancel(spiner);
          } else {
 
+
+            let resOperations = res.operations[0]
+
+            console.log("resOperations ", resOperations)
+
             const submit = {
-               _id: res._id,
+               _id: res.id,
                username: $ctrl.article.username,
-               blockchain_author: res.oprations[0][1].author,
+               blockchain_author: resOperations[1].author,
                block_num: res.block_num,
                ref_block_num: res.ref_block_num,
                ref_block_prefix: res.ref_block_prefix,
                expiration: res.expiration,
-               operations: res.operations[0][0],
+               operations: resOperations[0],
                target: bcNetwork,
                state: "submit_process",
-               permlink: res.oprations[1].permlink,
+               permlink: resOperations[1].permlink,
                award: "0"
             }
 

@@ -14,7 +14,13 @@ function stringToArray() {
   };
 }
 
+function sortDate(date) {
+   let dateResult = new Date(date);
+   return dateResult;
+};
+
 export default angular
   .module("ArticlesFilters", [])
   .filter("cropString", cropString)
-  .filter("stringToArray", stringToArray);
+  .filter("stringToArray", stringToArray)
+  .filter("sortDate", sortDate);

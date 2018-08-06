@@ -15,7 +15,7 @@ function _profileController(appToastService, configStorageService, _, uuid) {
    let $ctrl = this;
 
    $ctrl.operation = "Профиль";
-   $ctrl.bcNetwork = ['vox', 'steem', 'golos'];
+   $ctrl.bcNetwork = ['vox', 'steemit', 'golos'];
    $ctrl.profile = {};
    $ctrl.profile = configStorageService.get("user");
    $ctrl.blockchainKeys = [];

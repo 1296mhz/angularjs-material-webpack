@@ -61,11 +61,11 @@
                rows="5" md-select-on-focus></textarea>
          </md-input-container>
 
-         <md-chips ng-required="true" md-max-chips="5" name="tags" ng-model="$ctrl.tags" md-removable="$ctrl.readonlyTag" placeholder="Добавь теги (до 5 штук). Первый тег станет основной категорией." delete-button-label="Удалить тэг"
+         <md-chips ng-required="true" md-max-chips="5" name="tags" ng-model="$ctrl.tags" md-removable="$ctrl.readonlyTag" placeholder="Добавь теги (до 5 штук)." delete-button-label="Удалить тэг"
             delete-hint="Нажмите удалить что бы удалить тэг">
          </md-chips>
 
-         <div class="md-chips-messages" ng-show="articleForm.tags.$dirty || articleForm.$submitted" ng-messages="articleForm.tags.$error">
+         <div class="md-chips-messages" ng-messages="articleForm.tags.$error">
             <div ng-message="required">Должен быть указан мимнимум один тэг.</div>
             <div ng-message="md-max-chips">Должен быть указан максиммум пять тэгов.</div>
          </div>
