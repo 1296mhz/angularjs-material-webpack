@@ -17,6 +17,7 @@ import "./components/articleEditor/articleEditor.component";
 import "./components/profile/profile.component";
 
 import ArticlesHttpService from "./services/articles.service";
+import SubmitsHttpService from "./services/submit.service";
 import ProfileHttpService from "./services/profile.service";
 import ConfigStorageService from "./services/configStorage.service";
 import AppToastServiceModule from "./services/appToast.service";
@@ -38,6 +39,7 @@ var appModule = angular
     "ArticleEditorModule",
     "ProfileModule",
     "ArticlesHttpService",
+    "SubmitsHttpService",
     "ProfileHttpService",
     "ConfigStorageService",
     "AppToastServiceModule",

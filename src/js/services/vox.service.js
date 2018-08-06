@@ -28,8 +28,7 @@ function _voxService(chainJsService) {
       sendComment: async (network, POSTING_KEY, parent_author, parent_permlink, author, permlink, title, body, json_metadata) => {
                     
          try{
-            const res = await chainJsService.comment(network, POSTING_KEY, "", parent_permlink, author, permlink, title, body, {});
-            
+            const res = await chainJsService.comment(network, POSTING_KEY, "", parent_permlink, author, permlink, title, body, json_metadata);
             return res;
          }catch(err){
             return err

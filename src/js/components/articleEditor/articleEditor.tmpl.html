@@ -4,7 +4,7 @@
          <h1 ng-bind="$ctrl.operation"></h1>
       </md-card-title-text>
       <md-card-title-text>
-          <md-progress-circular ng-hide="!$ctrl.activated" md-mode="determinate" value="{{$ctrl.determinateValue}}"></md-progress-circular>
+         <md-progress-circular ng-hide="!$ctrl.activated" md-mode="determinate" value="{{$ctrl.determinateValue}}"></md-progress-circular>
       </md-card-title-text>
    </md-card-title>
 
@@ -25,15 +25,15 @@
             <md-button aria-label="Open menu with custom trigger" class="md-icon-button" ng-mouseenter="$mdMenu.open()">
                <md-icon>share</md-icon>
             </md-button>
-            
+
             <md-menu-content width="4" ng-mouseleave="$mdMenu.close()">
-              <md-menu-item ng-repeat="item in $ctrl.networks">
-                <md-button ng-click="$ctrl.shares(item.bcNetwork, item.username)">
-                  {{ item.username }}@{{item.bcNetwork}} 
-                </md-button>
-              </md-menu-item>
+               <md-menu-item ng-repeat="item in $ctrl.networks">
+                  <md-button ng-click="$ctrl.shares(item.bcNetwork, item.username)">
+                     {{ item.username }}@{{item.bcNetwork}}
+                  </md-button>
+               </md-menu-item>
             </md-menu-content>
-          </md-menu>
+         </md-menu>
 
       </md-card-icon-actions>
 
@@ -42,22 +42,35 @@
    <md-divider></md-divider>
 
    <md-card-content>
+      <form name="articleForm">
+         <md-card-title-text>
+            <md-input-container class="md-block">
+               <label>Заголовок</label>
+               <input name="title" ng-model="$ctrl.article.title" md-minlength="1" md-maxlength="256">
 
-      <md-card-title-text>
-         <md-input-container class="md-block">
-            <label>Заголовок</label>
-            <input ng-model="$ctrl.article.title">
+               <div ng-messages="articleForm.title.$error">
+                  <div ng-message="required">Обязательное поле.</div>
+                  <div ng-message="md-maxlength">Не более 256 символов.</div>
+               </div>
+
+            </md-input-container>
+         </md-card-title-text>
+
+         <md-input-container class="md-block editor-article">
+            <textarea aria-label="editorArticle" simplemde='{spellChecker: false, autofocus: true }' ng-model='$ctrl.text' md-maxlength="150000"
+               rows="5" md-select-on-focus></textarea>
          </md-input-container>
-      </md-card-title-text>
 
-      <md-input-container class="md-block editor-article">
-         <textarea aria-label="editorArticle" simplemde='{spellChecker: false, autofocus: true }' ng-model='$ctrl.text' md-maxlength="150000"
-            rows="5" md-select-on-focus></textarea>
-      </md-input-container>
+         <md-chips ng-required="true" md-max-chips="5" name="tags" ng-model="$ctrl.tags" md-removable="$ctrl.readonlyTag" placeholder="Добавь теги (до 5 штук). Первый тег станет основной категорией." delete-button-label="Удалить тэг"
+            delete-hint="Нажмите удалить что бы удалить тэг">
+         </md-chips>
 
-      <md-chips ng-model="$ctrl.tags" md-removable="$ctrl.readonlyTag" placeholder="Введите название тэга" delete-button-label="Удалить тэг"
-         delete-hint="Нажмите удалить что бы удалить тэг" secondary-placeholder="+Тэг"></md-chips>
+         <div class="md-chips-messages" ng-show="articleForm.tags.$dirty || articleForm.$submitted" ng-messages="articleForm.tags.$error">
+            <div ng-message="required">Должен быть указан мимнимум один тэг.</div>
+            <div ng-message="md-max-chips">Должен быть указан максиммум пять тэгов.</div>
+         </div>
 
+      </form>
    </md-card-content>
 
 
