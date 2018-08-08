@@ -52,7 +52,12 @@ function _articleEditorController(
       localStorage.getItem($ctrl.profile.user.id)
    );
 
-   $ctrl.items = [1,2,3,4,5];
+
+
+   $ctrl.networks = _.where($ctrl.profileStorage, { type: "posting" });
+
+   // checkbox
+   $ctrl.items = $ctrl.networks;
    $ctrl.selected = [];
 
    $ctrl.toggle = function (item, list) {
@@ -68,16 +73,14 @@ function _articleEditorController(
    $ctrl.exists = function (item, list) {
      return list.indexOf(item) > -1;
    };
-
-
-   $ctrl.networks = _.where($ctrl.profileStorage, { type: "posting" });
+// checkbox end
 
    if (articleId !== undefined) {
-      $ctrl.activated = false;
+      $ctrl.spinerActivated = false;
       $ctrl.operation = "Редактирование статьи";
       getArticle();
    } else {
-      $ctrl.activated = false;
+      $ctrl.spinerActivated = false;
       $ctrl.operation = "Создание новой статьи";
    }
 
@@ -135,9 +138,8 @@ function _articleEditorController(
    };
 
    $ctrl.shares = async function (bcNetwork, username) {
-      $ctrl.activated = true;
-      // Iterate every 100ms, non-stop and increment
-      // the Determinate loader.
+      $ctrl.spinerActivated = true;
+
       let spiner = $interval(function () {
          $ctrl.determinateValue += 1;
          if ($ctrl.determinateValue > 100) {
@@ -201,7 +203,7 @@ function _articleEditorController(
          }
          */
          if (res.name === "RPCError") {
-            $ctrl.activated = false;
+            $ctrl.spinerActivated = false;
             appToastService.send("Ошибка размещения на " + bcNetwork);
             $interval.cancel(spiner);
          } else {
@@ -232,14 +234,14 @@ function _articleEditorController(
                console.log(err)
             });
 
-            $ctrl.activated = false;
+            $ctrl.spinerActivated = false;
             $interval.cancel(spiner);
             appToastService.send("Опубликовано на " + bcNetwork);
          }
       } catch (err) {
          appToastService.send("Ошибка размещения на " + bcNetwork);
          $interval.cancel(spiner);
-         $ctrl.activated = false;
+         $ctrl.spinerActivated = false;
          console.log(err);
       }
    };
