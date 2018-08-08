@@ -1,5 +1,6 @@
 import "../../filters/ArticlesFilters.module";
 import "../../vendor/smde/simplemde-markdown-editor/dist/simplemde.min.css";
+import "./articleEditor.css";
 import "../../vendor/smde/simplemde-angular/dist/simplemde-angular";
 
 _articleEditorController.$inject = [
