@@ -60,13 +60,13 @@ module.exports = {
       ]
    },
    plugins: [
-      /*
-      new CopyWebpackPlugin([{ from: 'dist/*', to: 'dist1'}], {
+      
+      new CopyWebpackPlugin([{ from: 'dist/', to: '../../../server/dist'}], {
          copyUnmodified: false,
          debug: 'info',
          context: './'
       }),
-      */
+      
       new Visualizer({
          filename: '../../statistics.html'
       })      
