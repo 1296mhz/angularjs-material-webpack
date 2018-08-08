@@ -62,7 +62,7 @@ module.exports = {
    plugins: [
       new CopyWebpackPlugin([{ from: 'dist/', to: '../../../server/dist'}], {
          copyUnmodified: false,
-         debug: 'info',
+         //debug: 'info',
          context: './'
       }),
 

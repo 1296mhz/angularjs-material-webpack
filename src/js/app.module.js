@@ -1,7 +1,7 @@
 import "./dep.module";
 
 import apiServerHost from "./constants/apiServerHost.constant";
-
+import pageTexts from "./constants/pageTexts.constant";
 import "@uirouter/angularjs";
 import routing from "./app.config";
 import "../../node_modules/angular-material/angular-material.css";
@@ -47,6 +47,7 @@ var appModule = angular
   ])
   .config(routing)
   .constant("apiServerHost", apiServerHost)
+  .constant("pageTexts", pageTexts);
  
 
 export default appModule;

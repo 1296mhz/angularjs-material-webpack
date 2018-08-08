@@ -104,8 +104,9 @@ function _articleEditorController(
     $ctrl.article.tags = $ctrl.tags.join(",");
     $ctrl.article.data = $ctrl.text;
     $ctrl.article.username = $ctrl.profile.user.name;
-    console.log("articleId ", articleId);
+    
     if (articleId !== undefined) {
+      console.log("articleId не равно undefined ", articleId)
       console.log($ctrl.article);
       articlesHttpService.updateArticle(articleId, $ctrl.article).then(
         data => {
@@ -120,7 +121,7 @@ function _articleEditorController(
       getArticle();
     } else {
       // $ctrl.article.state = "created";
-
+      console.log("articleId иначе", articleId);
       articlesHttpService.addArticle($ctrl.article).then(
         data => {
           console.log(data);
@@ -146,7 +147,7 @@ function _articleEditorController(
         console.log("Включаем: ", a);
         return true;
       } else {
-        console.log("Выключем")
+        console.log("Выключем");
         return false;
       }
     }
@@ -188,15 +189,17 @@ function _articleEditorController(
           json_metadata
         );
 
-        console.log(res);
-
-        if (res.cause) {
-          console.log("Ошибка сохранения: " + res.cause);
-        }
+        console.log("ОТвет: ", res);
 
         if (res.name === "RPCError") {
           $ctrl.spinerActivated = false;
-          appToastService.send("Ошибка размещения на " + data.bcNetwork);
+          let cause = res.message;
+          let causeArray = cause.split(":");
+
+          appToastService.send(
+            "Ошибка размещения на " + data.bcNetwork + ": " + causeArray[2]
+          );
+          // appToastService.send("Ошибка размещения на " + data.bcNetwork);
           $interval.cancel(spiner);
         } else {
           let resOperations = res.operations[0];
@@ -244,7 +247,7 @@ function _articleEditorController(
         appToastService.send("Ошибка размещения на " + data.bcNetwork);
         $interval.cancel(spiner);
         $ctrl.spinerActivated = spinerCounterF($ctrl.spinerCounter);
-      //  console.log(err);
+        //  console.log(err);
       }
     });
   };

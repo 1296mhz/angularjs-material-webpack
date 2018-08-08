@@ -9,7 +9,7 @@ function _voxService(chainJsService) {
        * @param  {} network - Сеть vox, golos, steem
        * @param  {} POSTING_KEY - Ключ для постинга
        * @param  {} parent_author - "" for a new post
-       * @param  {} parent_permlink - main tag 
+       * @param  {} parent_permlink - main tag
        * @param  {} author -  author username
        * @param  {} permlink - post permlink
        * @param  {} title - post title

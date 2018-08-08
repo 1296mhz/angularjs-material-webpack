@@ -1,13 +1,16 @@
 
-_headerController.$inject = ['$rootScope'];
+_headerController.$inject = ['$rootScope', 'pageTexts'];
 
 let HeaderComponent = {
     template: require('./header.tmpl.html'),
     controller: _headerController
 };
 
-function _headerController($rootScope) {
+function _headerController($rootScope, pageTexts) {
     var $ctrl = this;
+
+    $ctrl.page = {};
+    $ctrl.page.welcomeText = pageTexts.welcomeText;
 
     $ctrl.logout = function(){
         window.location.assign("/logout")
@@ -15,8 +18,7 @@ function _headerController($rootScope) {
     $ctrl.toggleSidenav = function(s){
         $rootScope.$emit('click', { message: "Hello"});
     }  
-
-}
+};
 
 export default angular.module('HeaderModule', [])
     .component('headerComponent', HeaderComponent)
