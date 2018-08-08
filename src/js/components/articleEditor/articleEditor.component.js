@@ -1,5 +1,6 @@
 import "../../filters/ArticlesFilters.module";
 import "../../vendor/smde/simplemde-markdown-editor/dist/simplemde.min.css";
+//import "../../vendor/smde/simplemde-markdown-editor/src/css/simplemde.css";
 import "./articleEditor.css";
 import "../../vendor/smde/simplemde-angular/dist/simplemde-angular";
 
@@ -50,6 +51,24 @@ function _articleEditorController(
    $ctrl.profileStorage = JSON.parse(
       localStorage.getItem($ctrl.profile.user.id)
    );
+
+   $ctrl.items = [1,2,3,4,5];
+   $ctrl.selected = [];
+
+   $ctrl.toggle = function (item, list) {
+     var idx = list.indexOf(item);
+     if (idx > -1) {
+       list.splice(idx, 1);
+     }
+     else {
+       list.push(item);
+     }
+   };
+
+   $ctrl.exists = function (item, list) {
+     return list.indexOf(item) > -1;
+   };
+
 
    $ctrl.networks = _.where($ctrl.profileStorage, { type: "posting" });
 

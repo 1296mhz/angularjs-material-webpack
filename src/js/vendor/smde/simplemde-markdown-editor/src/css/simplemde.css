@@ -11,8 +11,8 @@
 }
 
 .CodeMirror-scroll {
-    min-height: 300px;
-    max-height: 300px
+    min-height: 250px;
+    max-height: 250px
 }
 
 .CodeMirror-fullscreen {

@@ -5,6 +5,8 @@ require('file-loader');
 require('raw-loader');
 require('svg-url-loader');
 const Visualizer = require('webpack-visualizer-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin')
+
 module.exports = {
    "mode": "production",
    "entry": {
@@ -58,9 +60,16 @@ module.exports = {
       ]
    },
    plugins: [
+      /*
+      new CopyWebpackPlugin([{ from: 'dist/*', to: 'dist1'}], {
+         copyUnmodified: false,
+         debug: 'info',
+         context: './'
+      }),
+      */
       new Visualizer({
-         filename: './dist/statistics.html'
-      })
+         filename: '../../statistics.html'
+      })      
    ],
    performance: { hints: false },
    devServer: {
