@@ -11,7 +11,7 @@ function _appToastService($mdToast) {
                .simple()
                .textContent(message)
                .position("top right")
-               .hideDelay(3000)
+               .hideDelay(10000)
          );
       }
    }
