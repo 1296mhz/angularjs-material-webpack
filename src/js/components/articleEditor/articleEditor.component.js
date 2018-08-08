@@ -52,15 +52,13 @@ function _articleEditorController(
       localStorage.getItem($ctrl.profile.user.id)
    );
 
-
-
    $ctrl.networks = _.where($ctrl.profileStorage, { type: "posting" });
 
    // checkbox
    $ctrl.items = $ctrl.networks;
-   $ctrl.selected = [];
+   $ctrl.networksSelected = [];
 
-   $ctrl.toggle = function (item, list) {
+   $ctrl.toggleNetwork = function (item, list) {
      var idx = list.indexOf(item);
      if (idx > -1) {
        list.splice(idx, 1);
@@ -70,9 +68,10 @@ function _articleEditorController(
      }
    };
 
-   $ctrl.exists = function (item, list) {
+   $ctrl.existsNetworks = function (item, list) {
      return list.indexOf(item) > -1;
    };
+   
 // checkbox end
 
    if (articleId !== undefined) {

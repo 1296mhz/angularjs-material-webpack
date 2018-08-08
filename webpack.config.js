@@ -17,7 +17,7 @@ module.exports = {
    },
    "output": {
       "path": __dirname + '/dist/js',
-      //"filename": "[name].[chunkhash:8].js"
+      //"filename": "bundle.[chunkhash:8].js"
       "filename": "bundle.js"
    },
    "devtool": "source-map",
@@ -45,7 +45,7 @@ module.exports = {
             test: /\.(png|jpg|jpeg|gif)$/,
             loader: 'file-loader'
          },
-         // { test: /\.(svg|eot|woff|ttf|svg|woff2)$/, 
+         // { test: /\.(svg|eot|woff|ttf|svg|woff2)$/,
          //  loader: 'url-loader?limit=100000&name=../fonts/[name].[ext]' },
          {
             test: /\.html$/,
@@ -60,16 +60,15 @@ module.exports = {
       ]
    },
    plugins: [
-      
       new CopyWebpackPlugin([{ from: 'dist/', to: '../../../server/dist'}], {
          copyUnmodified: false,
          debug: 'info',
          context: './'
       }),
-      
+
       new Visualizer({
          filename: '../../statistics.html'
-      })      
+      })
    ],
    performance: { hints: false },
    devServer: {
