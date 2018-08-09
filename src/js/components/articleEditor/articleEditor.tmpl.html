@@ -1,7 +1,7 @@
 <md-card ng-cloak>
       <md-card-title>
             <md-card-title-text>
-                  <h1 ng-bind="$ctrl.operation"></h1>
+                  <h1 >{{ $ctrl.operation }}</h1>
             </md-card-title-text>
             <md-card-title-text>
                   <md-progress-circular ng-hide="!$ctrl.spinerActivated" md-mode="determinate" value="{{$ctrl.determinateValue}}"></md-progress-circular>

@@ -107,6 +107,7 @@ function _articleEditorController(
     
     if (articleId !== undefined) {
       console.log("articleId не равно undefined ", articleId)
+   
       console.log($ctrl.article);
       articlesHttpService.updateArticle(articleId, $ctrl.article).then(
         data => {
@@ -127,6 +128,7 @@ function _articleEditorController(
           console.log(data);
           articleId = data.data.id;
           appToastService.send(data.data.message);
+          $ctrl.operation = "Редактирование статьи";
         },
         err => {
           console.log(err);
