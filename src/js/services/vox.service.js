@@ -25,15 +25,22 @@ function _voxService(chainJsService) {
          let resultPermlink = chainJsService.createCommentPermlink(permlink);
          return resultPermlink
       },
-      sendComment: async (network, POSTING_KEY, parent_author, parent_permlink, author, permlink, title, body, json_metadata) => {
-                    
+      sendComment: async (network, POSTING_KEY, parent_author, parent_permlink, author, permlink, title, body, json_metadata) => {      
          try{
             const res = await chainJsService.comment(network, POSTING_KEY, "", parent_permlink, author, permlink, title, body, json_metadata);
             return res;
          }catch(err){
             return err
          }
-         
+      },
+      sendCommentOptions: async (network, POSTING_KEY, author, permlink, max_accepted_payout, percent_steem_dollars, allow_votes, allow_curation_rewards, extensions) => {
+         try{
+             // "author", "permlink", "max_accepted_payout", "percent_steem_dollars", "allow_votes", "allow_curation_rewards", "extensions"
+            const res = await chainJsService.commentOptions(network, POSTING_KEY, author, permlink, max_accepted_payout, percent_steem_dollars, allow_votes, allow_curation_rewards, extensions);
+            return res;
+         }catch(err){
+            return err
+         }
       }
    }
 }

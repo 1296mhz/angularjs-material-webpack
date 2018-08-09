@@ -21,4 +21,4 @@ function _articlesHttpService($http, apiServerHost) {
 };
 
 export default angular.module('ArticlesHttpService', [])
-   .factory('articlesHttpService', _articlesHttpService)
+   .factory('articlesHttpService', _articlesHttpService);

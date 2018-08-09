@@ -13,7 +13,7 @@ function _configStorageService() {
       }
     }
   };
-}
+};
 
 export default angular
   .module("ConfigStorageService", [])
