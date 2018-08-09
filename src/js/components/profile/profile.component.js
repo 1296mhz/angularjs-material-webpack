@@ -2,7 +2,8 @@ _profileController.$inject = [
    "appToastService",
    "configStorageService",
    '_',
-   "uuid"
+   "uuid",
+   "chainConstants"
 ];
 
 let ProfileComponent = {
@@ -10,12 +11,13 @@ let ProfileComponent = {
    controller: _profileController
 };
 
-function _profileController(appToastService, configStorageService, _, uuid) {
+function _profileController(appToastService, configStorageService, _, uuid, chainConstants) {
    console.log("Profile component contoller")
    let $ctrl = this;
 
    $ctrl.operation = "Профиль";
-   $ctrl.bcNetwork = ['vox', 'steemit', 'golos'];
+   //$ctrl.bcNetwork = ['vox', 'steemit', 'golos'];
+   $ctrl.bcNetwork = chainConstants.networks;
    $ctrl.profile = {};
    $ctrl.profile = configStorageService.get("user");
    $ctrl.blockchainKeys = [];
