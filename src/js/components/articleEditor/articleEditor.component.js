@@ -37,7 +37,7 @@ function _articleEditorController(
   $ctrl.operation = "";
   $ctrl.text = "";
   $ctrl.tags = [];
-  $ctrl.public_network = [];
+  $ctrl.publish_network = [];
   $ctrl.createdAt = "";
   $ctrl.updatedAt = "";
   $ctrl.article = {};
@@ -91,9 +91,9 @@ function _articleEditorController(
         $ctrl.article.state = data.data[0].state;
         $ctrl.text = data.data[0].data;
         $ctrl.tags = data.data[0].tags.split(",");
-        $ctrl.public_network =
-          data.data[0].public_network !== undefined
-            ? JSON.parse(data.data[0].public_network)
+        $ctrl.publish_network =
+          data.data[0].publish_network !== undefined
+            ? JSON.parse(data.data[0].publish_network)
             : [];
         $ctrl.createdAt = data.data[0].created_at;
         $ctrl.updatedAt = data.data[0].updated_at;
@@ -107,7 +107,7 @@ function _articleEditorController(
   $ctrl.saveArticleButton = function() {
     $ctrl.article.tags = $ctrl.tags.join(",");
 
-    $ctrl.article.public_network = JSON.stringify($ctrl.public_network);
+    $ctrl.article.publish_network = JSON.stringify($ctrl.publish_network);
 
     $ctrl.article.data = $ctrl.text;
 
@@ -258,7 +258,7 @@ function _articleEditorController(
                 permlink: resOperations[1].permlink
               });
 
-              $ctrl.public_network.push({
+              $ctrl.publish_network.push({
                 target: data.bcNetwork,
                 block_num: res.block_num,
                 permlink: resOperations[1].permlink
@@ -266,8 +266,8 @@ function _articleEditorController(
 
               $ctrl.article.tags = $ctrl.tags.join(",");
 
-              $ctrl.article.public_network = JSON.stringify(
-                $ctrl.public_network
+              $ctrl.article.publish_network = JSON.stringify(
+                $ctrl.publish_network
               );
 
               $ctrl.article.data = $ctrl.text;

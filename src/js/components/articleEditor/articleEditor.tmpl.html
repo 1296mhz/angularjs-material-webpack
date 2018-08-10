@@ -21,7 +21,7 @@
                   </md-button>
 
                   <md-menu>
-                        <md-button ng-show="$ctrl.networksSelected.length > 0" aria-label="ОТправить в сети или сеть" class="md-icon-button" ng-click="$ctrl.shares()">
+                        <md-button ng-show="$ctrl.networksSelected.length > 0" aria-label="Отправить в сети или сеть" class="md-icon-button" ng-click="$ctrl.shares()">
                               <md-icon>share</md-icon>
                         </md-button>
 
@@ -50,11 +50,11 @@
       <md-card-content>
             <form name="articleForm">
                   <md-card-title-text>
-                              <md-input-container class="md-block" ng-show="$ctrl.public_network.length > 0">
+                              <md-input-container class="md-block" ng-show="$ctrl.publish_network.length > 0">
                                           <p>Опубликовано в сетях: </p>
                                           <div layout="row">
-                                                      <div ng-repeat="pnetwork in $ctrl.public_network">
-                                                          <p>{{ pnetwork }}</p>
+                                                      <div ng-repeat="pnetwork in $ctrl.publish_network">
+                                                          <p>{{ pnetwork.target }}</p>
                                                       </div>
                                                 </div>
                                     </md-input-container>
