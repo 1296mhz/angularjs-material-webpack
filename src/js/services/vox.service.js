@@ -32,15 +32,6 @@ function _voxService(chainJsService) {
          }catch(err){
             return err
          }
-      },
-      sendCommentOptions: async (network, POSTING_KEY, author, permlink, max_accepted_payout, percent_steem_dollars, allow_votes, allow_curation_rewards, extensions) => {
-         try{
-             // "author", "permlink", "max_accepted_payout", "percent_steem_dollars", "allow_votes", "allow_curation_rewards", "extensions"
-            const res = await chainJsService.commentOptions(network, POSTING_KEY, author, permlink, max_accepted_payout, percent_steem_dollars, allow_votes, allow_curation_rewards, extensions);
-            return res;
-         }catch(err){
-            return err
-         }
       }
    }
 }

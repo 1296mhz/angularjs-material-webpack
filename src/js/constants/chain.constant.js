@@ -1,3 +1,3 @@
 export default {
-   networks: ['vox', 'steemit', 'golos']
+   networks: ['vox', 'steemit', 'voxTestNet']
 }

@@ -112,7 +112,8 @@ function _articleEditorController(
       $ctrl.article.data = $ctrl.text;
 
       $ctrl.article.username = $ctrl.profile.user.name;
-
+      $ctrl.article.state = 'created';
+      
       if (articleId !== undefined) {
          console.log("articleId не равно undefined ", articleId);
 
@@ -202,22 +203,7 @@ function _articleEditorController(
             const percent_steem_dollars = 0;
             const allow_votes = true;
             const allow_curation_rewards = true;
-            const extensions = [];
-
-            const resSendCommentOptions = await voxService.sendCommentOptions(
-               network,
-               POSTING_KEY,
-               author,
-               permlink,
-               max_accepted_payout,
-               percent_steem_dollars,
-               allow_votes,
-               allow_curation_rewards,
-               extensions
-            );
-
-            console.log("res: ", res);
-            console.log("resSendCommentOptions: ", resSendCommentOptions);
+            const extensions = [];    
 
             if (res.name === "RPCError") {
                $ctrl.spinerActivated = false;

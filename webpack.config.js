@@ -5,7 +5,8 @@ require('file-loader');
 require('raw-loader');
 require('svg-url-loader');
 const Visualizer = require('webpack-visualizer-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin')
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+// const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
 
 module.exports = {
    "mode": "production",
@@ -68,7 +69,8 @@ module.exports = {
 
       new Visualizer({
          filename: '../../statistics.html'
-      })
+      }),
+    //   new BundleAnalyzerPlugin()
    ],
    performance: { hints: false },
    devServer: {
